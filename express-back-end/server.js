@@ -1,22 +1,30 @@
-const Express = require("express");
-const App = Express();
-const BodyParser = require("body-parser");
-const PORT = 8000;
+// load .env data into process.env
+require("dotenv").config();
 
-// Express Configuration
-App.use(BodyParser.urlencoded({ extended: false }));
-App.use(Express.static("public"));
+// Web server config
+const PORT = process.env.PORT;
+const express = require("express");
+const bodyParser = require("body-parser");
+const App = express();
+const morgan = require("morgan");
+const cors = require("cors");
 
-// Sample GET route
-App.get("/api/data", (req, res) =>
-	res.json({
-		message: "Seems to work!"
-	})
-);
+//middleware config
+App.use(cors());
+App.use(morgan("dev"));
+App.set("view engine", "ejs");
+App.use(bodyParser.urlencoded({ extended: true }));
+App.use(express.json());
+App.use(express.static("public"));
+
+// Separated Routes for each Resource
+const datbaseRoutes = require("./routes/database.js");
+
+// Mount all resource routes
+App.use(datbaseRoutes());
 
 App.listen(PORT, () => {
-	// eslint-disable-next-line no-console
 	console.log(
-		`Express seems to be listening on port ${PORT} so that's pretty good 👍`
+		`Express Server is listening on port ${PORT} so that's pretty good 👍`
 	);
 });
