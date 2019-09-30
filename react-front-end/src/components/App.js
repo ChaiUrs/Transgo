@@ -1,38 +1,60 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+// import axios from "axios";
+import "styles/App.css";
+import Navbar from "components/NavBar/Navbar.js";
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      message: 'Click the button to load data!'
-    }
-  }
+export default function App() {
+	const [user, setUser] = useState({ id: "", name: "", password: "" });
+	const [userdata, setUserData] = useState([]);
+	const [alert, setAlert] = useState("");
 
-  fetchData = () => {
-    axios.get('/api/data') // You can simply make your requests to "/api/whatever you want"
-    .then((response) => {
-      // handle success
-      console.log(response.data) // The entire response from the Rails API
+	return (
+		<Router className="App">
+			<ToastContainer
+				position="bottom-right"
+				autoClose={3000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick={false}
+				rtl={false}
+				pauseOnVisibilityChange
+				draggable
+				pauseOnHover
+			/>
+			<Navbar
+				user={user}
+				setUser={setUser}
+				setUserData={setUserData}
+				setAlert={setAlert}
+			/>
 
-      console.log(response.data.message) // Just the message
-      this.setState({
-        message: response.data.message
-      });
-    }) 
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <h1>{ this.state.message }</h1>
-        <button onClick={this.fetchData} >
-          Fetch Data
-        </button>        
-      </div>
-    );
-  }
+			{alert.length ? (
+				<div
+					className="alert alert-danger"
+					role="alert"
+					style={{ position: "relative" }}
+				>
+					{alert}
+					<button
+						className="alert alert-danger"
+						style={{
+							position: "absolute",
+							zIndex: "1",
+							top: "-1px",
+							right: "0px"
+						}}
+						onClick={() => {
+							setAlert("");
+						}}
+					>
+						X
+					</button>
+				</div>
+			) : (
+				<></>
+			)}
+		</Router>
+	);
 }
-
-export default App;

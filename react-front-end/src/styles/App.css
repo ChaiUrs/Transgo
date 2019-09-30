@@ -1,33 +1,70 @@
 .App {
-  text-align: center;
+	text-align: center;
+	background-color: black;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+	animation: App-logo-spin infinite 20s linear;
+	height: 80px;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	background-color: #222;
+	height: 150px;
+	padding: 20px;
+	color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.App-intro {
+	font-size: large;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+#navbar-menu {
+	height: 100px;
+	font-size: 25px;
+	color: white;
+}
+
+/* navbar font */
+@import url("https://fonts.googleapis.com/css?family=Noto+Serif|Playfair+Display+SC|Quicksand&display=swap");
+
+.navbar-logo {
+	color: white !important;
+	font-size: 42px;
+	padding: 0 40px 0 40px;
+	font-family: "Playfair Display SC", serif;
+}
+
+nav a {
+	color: white;
+	font-family: "Playfair Display SC", serif;
+	padding: 10px;
+}
+
+.nav-dropdown {
+	color: black;
+}
+
+.loginout {
+	height: 40px;
+	margin: 10px;
+	border-radius: 5px;
+	padding-left: 10px;
+	font-family: "Noto Serif", serif;
+}
+
+.welcome {
+	font-family: "Playfair Display SC", serif;
+	font-size: 25px;
+	color: white;
+	margin-right: 20px;
 }
