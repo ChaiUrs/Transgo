@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 // import axios from "axios";
-import "styles/App.css";
-import Navbar from "components/NavBar/Navbar.js";
+import "../styles/App.css";
+import Navbar from "./NavBar/Navbar.js";
 
 export default function App() {
 	const [user, setUser] = useState({ id: "", name: "", password: "" });
