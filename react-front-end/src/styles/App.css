@@ -35,13 +35,13 @@
 }
 
 /* navbar font */
-@import url("https://fonts.googleapis.com/css?family=Noto+Serif|Playfair+Display+SC|Quicksand&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Acme|Noto+Serif|Playfair+Display+SC|Merriweather|Quicksand&display=swap");
 
 .navbar-logo {
 	color: white !important;
-	font-size: 42px;
+	font-size: 55px;
 	padding: 0 40px 0 40px;
-	font-family: "Playfair Display SC", serif;
+	font-family: "Acme", serif;
 }
 
 nav a {
@@ -64,7 +64,7 @@ nav a {
 
 .welcome {
 	font-family: "Playfair Display SC", serif;
-	font-size: 25px;
+	font-size: 20px;
 	color: white;
 	margin-right: 20px;
 }
