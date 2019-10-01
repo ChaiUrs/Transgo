@@ -6,6 +6,7 @@ import "../styles/App.css";
 import Navbar from "./NavBar/Navbar.js";
 // import { Map, GoogleApiWrapper } from "google-maps-react";
 import Map from "./Maps/Map.js";
+import getTaxiLocations from "../helpers/getTaxiLocations";
 
 const pos = {};
 const options = {
