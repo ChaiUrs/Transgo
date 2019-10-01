@@ -4,11 +4,33 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 // import axios from "axios";
 import "../styles/App.css";
 import Navbar from "./NavBar/Navbar.js";
+// import { Map, GoogleApiWrapper } from "google-maps-react";
+import Map from "./Maps/Map";
+
+const pos = {};
+
+function showPosition(position) {
+	pos.lat = position.coords.latitude;
+	pos.lng = position.coords.longitude;
+}
+
+function getLocation() {
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showPosition);
+	} else {
+		console.log("Can't get the geolocation");
+	}
+}
+getLocation();
 
 export default function App() {
 	const [user, setUser] = useState({ id: "", name: "", password: "" });
 	const [userdata, setUserData] = useState([]);
 	const [alert, setAlert] = useState("");
+	const style = {
+		width: "100%",
+		height: "100%"
+	};
 
 	return (
 		<Router className="App">
@@ -53,7 +75,7 @@ export default function App() {
 					</button>
 				</div>
 			) : (
-				<></>
+				<Map zoom={8} initialCenter={pos} />
 			)}
 		</Router>
 	);
