@@ -8,8 +8,8 @@ export default function Logout(props) {
 				<b>Welcome, {props.user.name}</b>
 			</span>
 			<button
-				className="example_e btn-outline-white btn-md my-2 my-sm-0 ml-3"
 				type="submit"
+				class="btn btn-danger"
 				onClick={() => {
 					props.setUser({ name: "", password: "" });
 					props.setName("");
@@ -17,7 +17,7 @@ export default function Logout(props) {
 					props.setAlert("");
 				}}
 			>
-				Logout
+				LOGOUT
 			</button>
 		</>
 	);
