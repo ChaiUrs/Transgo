@@ -11,7 +11,7 @@ export default function Navbar(props) {
 		<nav className="navbar navbar-expand-lg">
 			<span className="navbar-logo">
 				<Link to="/">
-					<b>GRAB & GO</b>
+					<b>TRANSGO</b>
 				</Link>
 			</span>
 			<button
@@ -26,25 +26,7 @@ export default function Navbar(props) {
 				<span className="navbar-toggler-icon"></span>
 			</button>
 			<div className="collapse navbar-collapse" id="navbar-menu">
-				<ul className="navbar-nav">
-					{/* <li className="nav-item dropdown">
-						<a
-							className="nav-link dropdown-toggle"
-							href="#"
-							id="navbarDropdown"
-							role="button"
-							data-toggle="dropdown"
-							aria-haspopup="true"
-							aria-expanded="false"
-						>
-							<b>MENU</b>
-						</a>
-						<div
-							className="dropdown-menu"
-							aria-labelledby="navbarDropdown"
-						></div>
-					</li> */}
-				</ul>
+				<ul className="navbar-nav"></ul>
 			</div>
 
 			{props.user.name ? (
