@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "../styles/App.css";
 import Navbar from "./NavBar/Navbar.js";
 // import { Map, GoogleApiWrapper } from "google-maps-react";
-import Map from "./Maps/Map";
+import Map from "./Maps/Map.js";
 
 const pos = {};
 const options = {

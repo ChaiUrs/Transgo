@@ -9,7 +9,7 @@ export default function Logout(props) {
 			</span>
 			<button
 				type="submit"
-				class="btn btn-danger"
+				className="btn btn-danger"
 				onClick={() => {
 					props.setUser({ name: "", password: "" });
 					props.setName("");

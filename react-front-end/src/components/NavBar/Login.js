@@ -24,7 +24,7 @@ export default function Login(props) {
 			/>
 			<button
 				type="submit"
-				class="btn btn-primary"
+				className="btn btn-primary"
 				onClick={() => {
 					console.log(props);
 					userAuthentication({
