@@ -11,7 +11,7 @@ export default function Navbar(props) {
 		<nav className="navbar navbar-expand-lg">
 			<span className="navbar-logo">
 				<Link to="/">
-					<b>GRAB & GO</b>
+					<b>TRANSGO</b>
 				</Link>
 			</span>
 			<button
