@@ -21,6 +21,7 @@ export function MapContainer(props) {
 		/>,
 		<Marker />
 	];
+
 	return (
 		<Map
 			google={props.google}

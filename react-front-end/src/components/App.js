@@ -8,6 +8,11 @@ import Navbar from "./NavBar/Navbar.js";
 import Map from "./Maps/Map";
 
 const pos = {};
+const options = {
+	enableHighAccuracy: true,
+	timeout: 10000,
+	maximumAge: 0
+};
 
 function showPosition(position) {
 	pos.lat = position.coords.latitude;
@@ -16,7 +21,7 @@ function showPosition(position) {
 
 function getLocation() {
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(showPosition);
+		navigator.geolocation.getCurrentPosition(showPosition, null, options);
 	} else {
 		console.log("Can't get the geolocation");
 	}
