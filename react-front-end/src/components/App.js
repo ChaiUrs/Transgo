@@ -51,7 +51,6 @@ export default function App() {
 				setUserData={setUserData}
 				setAlert={setAlert}
 			/>
-
 			{alert.length ? (
 				<div
 					className="alert alert-danger"
