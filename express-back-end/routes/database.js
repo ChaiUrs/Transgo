@@ -19,5 +19,15 @@ module.exports = () => {
 			});
 	});
 
+	router.get("/user", (req, res) => {
+		db.query(`SELECT * FROM users`)
+			.then(response => {
+				res.send(response.rows);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	});
+
 	return router;
 };
