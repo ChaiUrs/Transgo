@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { BrowserRouter as Router } from "react-router-dom";
-// import axios from "axios";
 import "../styles/App.css";
 import Navbar from "./NavBar/Navbar.js";
-// import { Map, GoogleApiWrapper } from "google-maps-react";
 import Map from "./Maps/Map.js";
-import getTaxiLocations from "../helpers/getTaxiLocations";
 
 const pos = {};
 const options = {
@@ -84,6 +81,7 @@ export default function App() {
 			) : (
 				<></>
 			)}
+
 			{logged ? <Map zoom={8} initialCenter={pos} /> : <></>}
 		</Router>
 	);
