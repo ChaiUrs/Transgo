@@ -34,6 +34,7 @@ export default function Login(props) {
 						if (response.data.length) {
 							props.setUser(response.data[0]);
 							props.setAlert("");
+							props.setLogged(true);
 						} else {
 							props.setAlert("Invalid username or password");
 						}

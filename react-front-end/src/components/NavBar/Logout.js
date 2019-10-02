@@ -15,6 +15,7 @@ export default function Logout(props) {
 					props.setName("");
 					props.setPassword("");
 					props.setAlert("");
+					props.setLogged(false);
 				}}
 			>
 				LOGOUT
