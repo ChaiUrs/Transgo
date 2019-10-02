@@ -49,9 +49,9 @@ export function MapContainer(props) {
 			initialCenter={props.initialCenter}
 		>
 			<Marker />
-			{markers.map(x => (
+			{/* {markers.map(x => (
 				<Marker title={x.title} name={x.name} position={x.position} />
-			))}
+			))} */}
 			<InfoWindow onClose={onInfoWindowClose}>
 				<div>
 					<h1></h1>

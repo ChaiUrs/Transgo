@@ -6,7 +6,12 @@ import "../styles/App.css";
 import Navbar from "./NavBar/Navbar.js";
 // import { Map, GoogleApiWrapper } from "google-maps-react";
 import Map from "./Maps/Map.js";
-import getTaxiLocations from "../helpers/getTaxiLocations";
+import {
+	GooglePlacesAutocomplete,
+	geocodeByAddress
+} from "react-google-places-autocomplete";
+import Loadscript from "./Maps/Loadscript";
+import MyComponents from "./Maps/Loadscript";
 
 const pos = {};
 const options = {
@@ -84,7 +89,9 @@ export default function App() {
 			) : (
 				<></>
 			)}
-			{logged ? <Map zoom={8} initialCenter={pos} /> : <></>}
+
+			{logged ? <Loadscript /> : <></>}
+			<div>{/* <GooglePlacesAutocomplete onSelect={console.log} /> */}</div>
 		</Router>
 	);
 }
