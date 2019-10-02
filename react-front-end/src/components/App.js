@@ -33,6 +33,7 @@ export default function App() {
 	const [user, setUser] = useState({ id: "", name: "", password: "" });
 	const [userdata, setUserData] = useState([]);
 	const [alert, setAlert] = useState("");
+	const [logged, setLogged] = useState(false);
 	const style = {
 		width: "100%",
 		height: "100%"
@@ -56,6 +57,7 @@ export default function App() {
 				setUser={setUser}
 				setUserData={setUserData}
 				setAlert={setAlert}
+				setLogged={setLogged}
 			/>
 			{alert.length ? (
 				<div
@@ -80,8 +82,9 @@ export default function App() {
 					</button>
 				</div>
 			) : (
-				<Map zoom={8} initialCenter={pos} />
+				<></>
 			)}
+			{logged ? <Map zoom={8} initialCenter={pos} /> : <></>}
 		</Router>
 	);
 }

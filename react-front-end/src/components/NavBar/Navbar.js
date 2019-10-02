@@ -37,6 +37,7 @@ export default function Navbar(props) {
 					setPassword={setPassword}
 					setUserData={props.setUserData}
 					setAlert={props.setAlert}
+					setLogged={props.setLogged}
 				/>
 			) : (
 				<Login
@@ -47,6 +48,7 @@ export default function Navbar(props) {
 					setUser={props.setUser}
 					setUserData={props.setUserData}
 					setAlert={props.setAlert}
+					setLogged={props.setLogged}
 				/>
 			)}
 		</nav>
