@@ -11,8 +11,8 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 
-	background: url("https://sbchecks.com/wp-content/uploads/2016/03/Sentinel-Background-Checks-Presents-The-Real-Story-Behind-Uber-and-Taxi-Company-Background-Checks.jpg")
-		no-repeat center fixed;
+	/* background: url("https://sbchecks.com/wp-content/uploads/2016/03/Sentinel-Background-Checks-Presents-The-Real-Story-Behind-Uber-and-Taxi-Company-Background-Checks.jpg") */
+	/* no-repeat center fixed; */
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
