@@ -28,9 +28,9 @@ export default function MyComponents(props) {
 		<LoadScript
 			id="script-loader"
 			googleMapsApiKey={process.env.REACT_APP_APIKEY}
-			// {...other props}
+			places={["Vancouver", "Burnaby"]}
 		>
-			<Direction />
+			<Direction centerLocation={props.centerLocation} />
 		</LoadScript>
 	);
 }

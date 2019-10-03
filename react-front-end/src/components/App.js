@@ -6,7 +6,6 @@ import Navbar from "./NavBar/Navbar.js";
 import Map from "./Maps/Map.js";
 
 import Loadscript from "./Maps/Loadscript";
-import MyComponents from "./Maps/Loadscript";
 
 const pos = {};
 const options = {
@@ -33,7 +32,7 @@ export default function App() {
 	const [user, setUser] = useState({ id: "", name: "", password: "" });
 	const [userdata, setUserData] = useState([]);
 	const [alert, setAlert] = useState("");
-	const [logged, setLogged] = useState(false);
+	const [logged, setLogged] = useState(true);
 	const style = {
 		width: "100%",
 		height: "100%"
@@ -85,8 +84,8 @@ export default function App() {
 				<></>
 			)}
 
-			{logged ? <Loadscript /> : <></>}
-			<div>{/* <GooglePlacesAutocomplete onSelect={console.log} /> */}</div>
+			{logged ? <Loadscript centerLocation={pos} /> : <></>}
+			<div></div>
 		</Router>
 	);
 }

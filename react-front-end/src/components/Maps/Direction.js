@@ -1,14 +1,23 @@
+import { func } from "prop-types";
+import MyMapWithAutocomplete from "./MyMapWithAutocomplete";
+
 const React = require("react");
-const { useState } = require("react");
+const { useState, useEffect } = require("react");
 const {
 	GoogleMap,
-	LoadScript,
 	DirectionsService,
-	DirectionsRenderer
+	DirectionsRenderer,
+	Marker,
+	Autocomplete,
+	StandaloneSearchBox,
+	DistanceMatrixService,
+	Circle
 } = require("@react-google-maps/api");
 // const ScriptLoaded = require("../../docs/ScriptLoaded").default;
-export default function Directions(props) {
+
+export default function Direction(props) {
 	const [response, setResponse] = useState(null);
+	const [disResponse, setdisResponse] = useState(null);
 	const [travelMode, setTravelMode] = useState(null);
 	const [origin, setOrigin] = useState("");
 	const [destination, setDestination] = useState("");
@@ -16,16 +25,47 @@ export default function Directions(props) {
 		origin,
 		destination
 	});
+	const [autocomplete, setAutocomplete] = useState("");
+
 	function directionsCallback(response) {
 		console.log(response);
 		if (response !== null) {
 			if (response.status === "OK") {
 				setResponse(response);
+				console.log("response Data: ", response);
 			} else {
 				console.log("response: ", response);
 			}
 		}
 	}
+
+	function distanceCallback(disResponse) {
+		if (disResponse !== null) {
+			if (disResponse.status === "OK") {
+				setdisResponse(disResponse);
+				console.log("Distance response Data: ", disResponse);
+			} else {
+				console.log("response: ", disResponse);
+			}
+		}
+	}
+
+	// const autocompleteRef = useRef(null);
+
+	// function onLoad(autocomplete) {
+	// 	console.log("autocomplete: ", autocomplete);
+
+	// 	autocompleteRef.current = autocomplete;
+	// }
+
+	// function onPlaceChanged() {
+	// 	if (autocompleteRef.current !== null) {
+	// 		console.log(autocompleteRef.current.getPlace());
+	// 	} else {
+	// 		console.log("Autocomplete is not loaded yet!");
+	// 	}
+	// }
+
 	function checkDriving({ target: { checked } }) {
 		if (checked) {
 			setTravelMode("DRIVING");
@@ -57,6 +97,20 @@ export default function Directions(props) {
 	function onMapClick(...args) {
 		console.log("onClick args: ", args);
 	}
+
+	function onLoad(autocomplete) {
+		console.log("autocomplete: ", autocomplete);
+
+		setAutocomplete(autocomplete);
+	}
+
+	function onPlaceChanged() {
+		if (autocomplete !== null) {
+		} else {
+			console.log("Autocomplete is not loaded yet!");
+		}
+	}
+
 	return (
 		<div className="map">
 			<div className="map-settings">
@@ -66,12 +120,14 @@ export default function Directions(props) {
 						<div className="form-group">
 							<label htmlFor="ORIGIN">Origin</label>
 							<br />
+							{/* <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}> */}
 							<input
 								id="ORIGIN"
 								className="form-control"
 								type="text"
 								onChange={event => setOrigin(event.target.value)}
 							/>
+							{/* </Autocomplete> */}
 						</div>
 					</div>
 					<div className="col-md-6 col-lg-4">
@@ -151,16 +207,13 @@ export default function Directions(props) {
 					id="direction-example"
 					// required
 					mapContainerStyle={{
-						height: "400px",
+						height: "600px",
 						width: "100%"
 					}}
 					// required
-					zoom={2}
+					zoom={15}
 					// required
-					center={{
-						lat: 0,
-						lng: -180
-					}}
+					center={props.centerLocation}
 					// optional
 					onClick={onMapClick}
 					// optional
@@ -172,31 +225,86 @@ export default function Directions(props) {
 						console.log("DirectionsRenderer onUnmount map: ", map);
 					}}
 				>
-					{route.origin !== "" && route.destination !== "" && (
-						<DirectionsService
-							// required
-							options={{
-								destination: destination,
-								origin: origin,
-								travelMode: travelMode
-							}}
-							// required
-							callback={directionsCallback}
-							// optional
-							onLoad={directionsService => {
-								console.log(
-									"DirectionsService onLoad directionsService: ",
-									directionsService
-								);
-							}}
-							// optional
-							onUnmount={directionsService => {
-								console.log(
-									"DirectionsService onUnmount directionsService: ",
-									directionsService
-								);
-							}}
+					{/* <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
+						<input
+							id="ORIGIN"
+							className="form-control"
+							type="text"
+							onChange={event => setOrigin(event.target.value)}
 						/>
+          </Autocomplete> */}
+
+					{/* <MyMapWithAutocomplete /> */}
+
+					<Marker
+						onLoad={marker => {
+							console.log("marker: ", marker);
+						}}
+						position={props.centerLocation}
+					/>
+					<Circle
+						// optional
+						onLoad={circle => {
+							console.log("Circle onLoad circle: ", circle);
+						}}
+						// optional
+						onUnmount={circle => {
+							console.log("Circle onUnmount circle: ", circle);
+						}}
+						// required
+						center={props.centerLocation}
+						// required
+						options={{
+							strokeColor: "#FF0000",
+							strokeOpacity: 0.8,
+							strokeWeight: 2,
+							fillColor: "#FF0000",
+							fillOpacity: 0.35,
+							clickable: false,
+							draggable: false,
+							editable: false,
+							visible: true,
+							radius: 1000,
+							zIndex: 1
+						}}
+					/>
+
+					{route.origin !== "" && route.destination !== "" && (
+						<>
+							<DirectionsService
+								// required
+								options={{
+									destination: destination,
+									origin: origin,
+									travelMode: travelMode
+								}}
+								// required
+								callback={directionsCallback}
+								// optional
+								onLoad={directionsService => {
+									console.log(
+										"DirectionsService onLoad directionsService: ",
+										directionsService
+									);
+								}}
+								// optional
+								onUnmount={directionsService => {
+									console.log(
+										"DirectionsService onUnmount directionsService: ",
+										directionsService
+									);
+								}}
+							/>
+							{/* <DistanceMatrixService
+								options={{
+									destination: destination,
+									origin: origin,
+									travelMode: travelMode,
+									unitSystem: window.google.maps.UnitSystem.METRIC
+								}}
+								callback={distanceCallback}
+							/> */}
+						</>
 					)}
 					{response !== null && (
 						<DirectionsRenderer
