@@ -4,6 +4,7 @@ const request = require("request");
 const { Pool } = require("pg");
 const dbParams = require("../lib/db.js");
 const db = new Pool(dbParams);
+const axios = require("axios");
 db.connect();
 
 module.exports = () => {
@@ -63,6 +64,42 @@ module.exports = () => {
 			// 	console.log(err);
 			// })
 		);
+	});
+
+	router.get("/api/places/:address", (req, res) => {
+		// const options = {
+		// 	method: "GET",
+		// 	url: "https://maps.googleapis.com/maps/api/place/textsearch/json",
+		// 	qs: { query: req.params.address, key: process.env.APIKEY },
+		// 	headers: {
+		// 		"cache-control": "no-cache",
+		// 		Connection: "keep-alive",
+		// 		"Accept-Encoding": "gzip, deflate",
+		// 		Host: "maps.googleapis.com",
+		// 		"Postman-Token":
+		// 			"2559fa7a-33f4-4556-bdab-ee97d7d4eb30,9df715cc-c306-4507-b12a-08c5865d64c7",
+		// 		"Cache-Control": "no-cache",
+		// 		Accept: "*/*",
+		// 		"User-Agent": "PostmanRuntime/7.17.1"
+		// 	}
+		// };
+		const key = process.env.APIKEY;
+		const options = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${req.params.address}&key=${key}`;
+		const result = [];
+		axios
+			.get(options)
+			.then(response => {
+				console.log(response);
+				res.send(response);
+			})
+			.catch(error => console.log(error));
+
+		// request(options, function(error, response, body) {
+		// 	if (error) throw new Error(error);
+		// 	console.log("body= ", response.body.results);
+		// 	// console.log("response", response);
+		// 	res.send(response);
+		// });
 	});
 
 	return router;

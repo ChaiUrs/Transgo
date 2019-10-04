@@ -1,5 +1,5 @@
-import { func } from "prop-types";
-import MyMapWithAutocomplete from "./MyMapWithAutocomplete";
+import AutocompleteOrigin from "./AutocompleteOrigin";
+import AutocompleteDestination from "./AutocompleteDestination";
 
 const React = require("react");
 const { useState, useEffect } = require("react");
@@ -121,12 +121,7 @@ export default function Direction(props) {
 							<label htmlFor="ORIGIN">Origin</label>
 							<br />
 							{/* <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}> */}
-							<input
-								id="ORIGIN"
-								className="form-control"
-								type="text"
-								onChange={event => setOrigin(event.target.value)}
-							/>
+							<AutocompleteOrigin setOrigin={setOrigin} origin={origin} />
 							{/* </Autocomplete> */}
 						</div>
 					</div>
@@ -134,11 +129,9 @@ export default function Direction(props) {
 						<div className="form-group">
 							<label htmlFor="DESTINATION">Destination</label>
 							<br />
-							<input
-								id="DESTINATION"
-								className="form-control"
-								type="text"
-								onChange={event => setDestination(event.target.value)}
+							<AutocompleteDestination
+								setDestination={setDestination}
+								destination={destination}
 							/>
 						</div>
 					</div>
@@ -225,17 +218,6 @@ export default function Direction(props) {
 						console.log("DirectionsRenderer onUnmount map: ", map);
 					}}
 				>
-					{/* <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
-						<input
-							id="ORIGIN"
-							className="form-control"
-							type="text"
-							onChange={event => setOrigin(event.target.value)}
-						/>
-          </Autocomplete> */}
-
-					{/* <MyMapWithAutocomplete /> */}
-
 					<Marker
 						onLoad={marker => {
 							console.log("marker: ", marker);

@@ -3,7 +3,6 @@ import { ToastContainer } from "react-toastify";
 import { BrowserRouter as Router } from "react-router-dom";
 import "../styles/App.css";
 import Navbar from "./NavBar/Navbar.js";
-import Map from "./Maps/Map.js";
 
 import Loadscript from "./Maps/Loadscript";
 

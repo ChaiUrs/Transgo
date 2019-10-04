@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import {
 	GoogleMap,
 	LoadScript,
@@ -28,7 +29,7 @@ export default function MyComponents(props) {
 		<LoadScript
 			id="script-loader"
 			googleMapsApiKey={process.env.REACT_APP_APIKEY}
-			places={["Vancouver", "Burnaby"]}
+			libraries={["places"]}
 		>
 			<Direction centerLocation={props.centerLocation} />
 		</LoadScript>
