@@ -12,7 +12,7 @@ export default function DistanceFootprint(props) {
 			<div className="form-group col-3">
 				<select
 					className="form-control"
-					value={props.distance}
+					value={distance}
 					onChange={event => {
 						setDistance(event.target.value);
 					}}

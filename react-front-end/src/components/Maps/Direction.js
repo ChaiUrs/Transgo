@@ -25,6 +25,10 @@ export default function Direction(props) {
 		origin,
 		destination
 	});
+	const [distance, setDistance] = useState("");
+	const [duration, setDuration] = useState("");
+	const [carbonfootprint, setCarbonfootprint] = useState("");
+
 	const [autocomplete, setAutocomplete] = useState("");
 
 	function directionsCallback(response) {
@@ -116,7 +120,7 @@ export default function Direction(props) {
 			<div className="map-settings">
 				<hr className="mt-0 mb-3" />
 				<div className="row">
-					<div className="col-md-6 col-lg-4">
+					<div className="col-ml-3 col-md-2 col-lg-2">
 						<div className="form-group">
 							<label htmlFor="ORIGIN">Origin</label>
 							<br />
@@ -125,13 +129,49 @@ export default function Direction(props) {
 							{/* </Autocomplete> */}
 						</div>
 					</div>
-					<div className="col-md-6 col-lg-4">
+					<div className="col-md-2 col-lg-2">
 						<div className="form-group">
 							<label htmlFor="DESTINATION">Destination</label>
 							<br />
 							<AutocompleteDestination
 								setDestination={setDestination}
 								destination={destination}
+							/>
+						</div>
+					</div>
+					<div className="col-md-2 col-lg-2">
+						<div className="form-group">
+							<label htmlFor="DISTANCE">Distance</label>
+							<br />
+							<input
+								id="DISTANCE"
+								className="form-control"
+								type="text"
+								onChange={event => setDistance(event.target.value)}
+							/>
+						</div>
+					</div>
+					<div className="col-md-2 col-lg-2">
+						<div className="form-group">
+							<label htmlFor="DURATION">Duration</label>
+							<br />
+							<input
+								id="DURATION"
+								className="form-control"
+								type="text"
+								onChange={event => setDuration(event.target.value)}
+							/>
+						</div>
+					</div>
+					<div className="col-md-2 col-lg-2">
+						<div className="form-group">
+							<label htmlFor="FOOTPRINT">Carbon Footprint</label>
+							<br />
+							<input
+								id="FOOTPRINT"
+								className="form-control"
+								type="text"
+								onChange={event => setCarbonfootprint(event.target.value)}
 							/>
 						</div>
 					</div>
