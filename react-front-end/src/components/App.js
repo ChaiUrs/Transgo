@@ -83,7 +83,7 @@ export default function App() {
 				<></>
 			)}
 
-			{logged ? <></> : <Loadscript centerLocation={pos} />}
+			{logged ? <Loadscript centerLocation={pos} /> : <></>}
 		</Router>
 	);
 }
