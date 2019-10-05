@@ -1,9 +1,13 @@
 import React from "react";
+import "../../styles/App.css";
 import userAuthentication from "../../helpers/userAuthentication";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faLock, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 
 export default function Login(props) {
 	return (
 		<div className="form-inline my-2 my-lg-0 ml-auto">
+			<FontAwesomeIcon icon={faUser} />
 			<input
 				className="loginout"
 				type="text"
@@ -13,9 +17,10 @@ export default function Login(props) {
 					props.setName(event.target.value);
 				}}
 			/>
+			<FontAwesomeIcon icon={faLock} />
 			<input
 				className="loginout"
-				type="password"
+				type="text"
 				placeholder="Password"
 				value={props.password}
 				onChange={event => {
@@ -24,7 +29,7 @@ export default function Login(props) {
 			/>
 			<button
 				type="submit"
-				className="btn btn-primary"
+				className="btn btn-primary btn-md"
 				onClick={() => {
 					console.log(props);
 					userAuthentication({
@@ -41,7 +46,7 @@ export default function Login(props) {
 					});
 				}}
 			>
-				LOGIN
+				<FontAwesomeIcon icon={faSignInAlt} />
 			</button>
 		</div>
 	);

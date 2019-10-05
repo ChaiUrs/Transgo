@@ -7,7 +7,6 @@ export default function AutocompleteDestination(props) {
 
 	function onLoad(autocomplete) {
 		console.log("autocomplete: ", autocomplete);
-
 		autocompleteRef.current = autocomplete;
 	}
 
@@ -19,8 +18,6 @@ export default function AutocompleteDestination(props) {
 		}
 	}
 
-	// console.log("result", result);
-
 	return (
 		<Autocomplete onLoad={onLoad} onPlacesChanged={onPlaceChanged}>
 			<input
@@ -29,7 +26,6 @@ export default function AutocompleteDestination(props) {
 				type="text"
 				onChange={event => {
 					props.setDestination(event.target.value);
-					// event.target.value = { result };
 				}}
 			/>
 		</Autocomplete>

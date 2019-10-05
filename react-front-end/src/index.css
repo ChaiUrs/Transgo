@@ -7,13 +7,12 @@ body {
 
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-
 	background-repeat: no-repeat;
 	background-size: cover;
 
-	/* background: url("https://sbchecks.com/wp-content/uploads/2016/03/Sentinel-Background-Checks-Presents-The-Real-Story-Behind-Uber-and-Taxi-Company-Background-Checks.jpg");
+	background-image: url("/images/vancity.jpg");
 	background-position: center fixed;
-	background-repeat: no-repeat; */
+	background-repeat: no-repeat;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -27,8 +26,8 @@ code {
 
 body::after {
 	content: "";
-	background: rgb(156, 71, 71);
-	opacity: 0.2;
+	background: rgb(2, 162, 66);
+	opacity: 0.3;
 	top: 0;
 	left: 0;
 	bottom: 0;

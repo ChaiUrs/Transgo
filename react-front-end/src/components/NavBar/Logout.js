@@ -1,15 +1,18 @@
 import React from "react";
 import "../../styles/App.css";
+import userAuthentication from "../../helpers/userAuthentication";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 export default function Logout(props) {
 	return (
 		<>
-			<span className="welcome white-text">
+			<span className="welcome">
 				<b>Welcome, {props.user.name}</b>
 			</span>
 			<button
 				type="submit"
-				className="btn btn-danger"
+				className="btn btn-danger btn-md"
 				onClick={() => {
 					props.setUser({ name: "", password: "" });
 					props.setName("");
@@ -18,7 +21,7 @@ export default function Logout(props) {
 					props.setLogged(false);
 				}}
 			>
-				LOGOUT
+				<FontAwesomeIcon icon={faSignOutAlt} />
 			</button>
 		</>
 	);

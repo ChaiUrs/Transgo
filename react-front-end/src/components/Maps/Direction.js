@@ -8,12 +8,8 @@ const {
 	DirectionsService,
 	DirectionsRenderer,
 	Marker,
-	Autocomplete,
-	StandaloneSearchBox,
-	DistanceMatrixService,
 	Circle
 } = require("@react-google-maps/api");
-// const ScriptLoaded = require("../../docs/ScriptLoaded").default;
 
 export default function Direction(props) {
 	const [response, setResponse] = useState(null);
@@ -53,22 +49,6 @@ export default function Direction(props) {
 			}
 		}
 	}
-
-	// const autocompleteRef = useRef(null);
-
-	// function onLoad(autocomplete) {
-	// 	console.log("autocomplete: ", autocomplete);
-
-	// 	autocompleteRef.current = autocomplete;
-	// }
-
-	// function onPlaceChanged() {
-	// 	if (autocompleteRef.current !== null) {
-	// 		console.log(autocompleteRef.current.getPlace());
-	// 	} else {
-	// 		console.log("Autocomplete is not loaded yet!");
-	// 	}
-	// }
 
 	function checkDriving({ target: { checked } }) {
 		if (checked) {
@@ -240,7 +220,7 @@ export default function Direction(props) {
 					id="direction-example"
 					// required
 					mapContainerStyle={{
-						height: "600px",
+						height: "500px",
 						width: "100%"
 					}}
 					// required
@@ -317,15 +297,7 @@ export default function Direction(props) {
 									);
 								}}
 							/>
-							{/* <DistanceMatrixService
-								options={{
-									destination: destination,
-									origin: origin,
-									travelMode: travelMode,
-									unitSystem: window.google.maps.UnitSystem.METRIC
-								}}
-								callback={distanceCallback}
-							/> */}
+							{}
 						</>
 					)}
 					{response !== null && (

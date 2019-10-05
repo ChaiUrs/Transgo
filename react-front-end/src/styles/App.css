@@ -31,23 +31,23 @@
 #navbar-menu {
 	height: 100px;
 	font-size: 25px;
-	color: white;
+	color: rgb(4, 112, 18);
 }
 
 /* navbar font */
 @import url("https://fonts.googleapis.com/css?family=Acme|Noto+Serif|Playfair+Display+SC|Merriweather|Quicksand&display=swap");
 
 .navbar-logo {
-	color: white !important;
+	color: rgb(3, 114, 90) !important;
 	font-size: 55px;
-	padding: 0 40px 0 40px;
+	padding: 0 10px 0 10px;
 	font-family: "Acme", serif;
 }
 
 nav a {
-	color: white;
+	color: rgb(245, 71, 71);
 	font-family: "Playfair Display SC", serif;
-	padding: 10px;
+	padding: 30px;
 }
 
 .nav-dropdown {
@@ -56,15 +56,16 @@ nav a {
 
 .loginout {
 	height: 40px;
-	margin: 10px;
-	border-radius: 5px;
-	padding-left: 10px;
+	width: 160px;
+	margin: 7px;
+	border-radius: 15px;
+	padding: 7px;
 	font-family: "Noto Serif", serif;
 }
 
 .welcome {
 	font-family: "Playfair Display SC", serif;
-	font-size: 20px;
-	color: white;
-	margin-right: 20px;
+	font-size: 22px;
+	color: rgb(87, 40, 4);
+	margin-right: 15px;
 }

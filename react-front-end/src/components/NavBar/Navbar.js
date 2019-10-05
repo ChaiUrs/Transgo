@@ -10,16 +10,20 @@ export default function Navbar(props) {
 	return (
 		<nav className="navbar navbar-expand-lg">
 			<span className="navbar-logo">
-				<Link to="/">
-					<b>TRANSGO</b>
-				</Link>
+				<img
+					alt="Transgo logo"
+					src="/images/transgo2.jpg"
+					width="130"
+					height="35"
+				/>{" "}
+				<b>TRANSGO</b>
 			</span>
 			<button
 				className="navbar-toggler"
 				type="button"
 				data-toggle="collapse"
-				data-target="#navbarNav"
-				aria-controls="navbarNav"
+				data-target="#navbarResponsive"
+				aria-controls="navbarResponsive"
 				aria-expanded="false"
 				aria-label="Toggle navigation"
 			>
