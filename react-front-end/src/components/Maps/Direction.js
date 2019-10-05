@@ -33,6 +33,8 @@ export default function Direction(props) {
 			if (response.status === "OK") {
 				setResponse(response);
 				console.log("response Data: ", response);
+				setDistance(response.routes[0].legs[0].distance.text);
+				setDuration(response.routes[0].legs[0].duration.text);
 			} else {
 				console.log("response: ", response);
 			}
@@ -127,6 +129,7 @@ export default function Direction(props) {
 								id="DISTANCE"
 								className="form-control"
 								type="text"
+								value={distance}
 								onChange={event => setDistance(event.target.value)}
 							/>
 						</div>
@@ -138,6 +141,7 @@ export default function Direction(props) {
 							<input
 								id="DURATION"
 								className="form-control"
+								value={duration}
 								type="text"
 								onChange={event => setDuration(event.target.value)}
 							/>

@@ -27,6 +27,9 @@ export default function AutocompleteDestination(props) {
 				onChange={event => {
 					props.setDestination(event.target.value);
 				}}
+				onSelect={event => {
+					props.setDestination(event.target.value);
+				}}
 			/>
 		</Autocomplete>
 	);
