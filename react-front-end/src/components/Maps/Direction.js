@@ -98,15 +98,13 @@ export default function Direction(props) {
 	return (
 		<div className="map">
 			<div className="map-settings">
-				<hr className="mt-0 mb-3" />
+				<hr className="ml-auto mt-0 mb-3" />
 				<div className="row">
 					<div className="col-ml-3 col-md-2 col-lg-2">
 						<div className="form-group">
 							<label htmlFor="ORIGIN">Origin</label>
 							<br />
-							{/* <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}> */}
 							<AutocompleteOrigin setOrigin={setOrigin} origin={origin} />
-							{/* </Autocomplete> */}
 						</div>
 					</div>
 					<div className="col-md-2 col-lg-2">

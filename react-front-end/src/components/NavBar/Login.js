@@ -20,7 +20,7 @@ export default function Login(props) {
 			<FontAwesomeIcon icon={faLock} />
 			<input
 				className="loginout"
-				type="text"
+				type="password"
 				placeholder="Password"
 				value={props.password}
 				onChange={event => {
