@@ -31,6 +31,9 @@ export default function AutocompleteDestination(props) {
 					props.setDestination(event.target.value);
 					// event.target.value = { result };
 				}}
+				onSelect={event => {
+					props.setDestination(event.target.value);
+				}}
 			/>
 		</Autocomplete>
 	);

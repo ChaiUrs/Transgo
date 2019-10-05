@@ -25,9 +25,6 @@ export default function Direction(props) {
 		origin,
 		destination
 	});
-	const [distance, setDistance] = useState("");
-	const [duration, setDuration] = useState("");
-	const [carbonfootprint, setCarbonfootprint] = useState("");
 
 	const [autocomplete, setAutocomplete] = useState("");
 
@@ -36,10 +33,33 @@ export default function Direction(props) {
 		if (response !== null) {
 			if (response.status === "OK") {
 				setResponse(response);
+				props.setDistance(response.routes[0].legs[0].distance.text);
+				props.setDuration(response.routes[0].legs[0].duration.text);
 				console.log("response Data: ", response);
 			} else {
 				console.log("response: ", response);
 			}
+		}
+	}
+
+	function directionsCallbackWalking(response) {
+		if (response !== null) {
+			console.log(
+				"Walking distance: ",
+				response.routes[0].legs[0].distance.text
+			);
+			console.log(
+				"Walking duration: ",
+				response.routes[0].legs[0].duration.text
+			);
+			// if (response.status === "OK") {
+			// 	setResponse(response);
+			// 	setDistance(response.routes[0].legs[0].distance.text);
+			// 	setDuration(response.routes[0].legs[0].duration.text);
+			// 	console.log("response Data: ", response);
+			// } else {
+			// 	console.log("response: ", response);
+			// }
 		}
 	}
 
@@ -53,22 +73,6 @@ export default function Direction(props) {
 			}
 		}
 	}
-
-	// const autocompleteRef = useRef(null);
-
-	// function onLoad(autocomplete) {
-	// 	console.log("autocomplete: ", autocomplete);
-
-	// 	autocompleteRef.current = autocomplete;
-	// }
-
-	// function onPlaceChanged() {
-	// 	if (autocompleteRef.current !== null) {
-	// 		console.log(autocompleteRef.current.getPlace());
-	// 	} else {
-	// 		console.log("Autocomplete is not loaded yet!");
-	// 	}
-	// }
 
 	function checkDriving({ target: { checked } }) {
 		if (checked) {
@@ -139,43 +143,8 @@ export default function Direction(props) {
 							/>
 						</div>
 					</div>
-					<div className="col-md-2 col-lg-2">
-						<div className="form-group">
-							<label htmlFor="DISTANCE">Distance</label>
-							<br />
-							<input
-								id="DISTANCE"
-								className="form-control"
-								type="text"
-								onChange={event => setDistance(event.target.value)}
-							/>
-						</div>
-					</div>
-					<div className="col-md-2 col-lg-2">
-						<div className="form-group">
-							<label htmlFor="DURATION">Duration</label>
-							<br />
-							<input
-								id="DURATION"
-								className="form-control"
-								type="text"
-								onChange={event => setDuration(event.target.value)}
-							/>
-						</div>
-					</div>
-					<div className="col-md-2 col-lg-2">
-						<div className="form-group">
-							<label htmlFor="FOOTPRINT">Carbon Footprint</label>
-							<br />
-							<input
-								id="FOOTPRINT"
-								className="form-control"
-								type="text"
-								onChange={event => setCarbonfootprint(event.target.value)}
-							/>
-						</div>
-					</div>
 				</div>
+
 				<div className="d-flex flex-wrap">
 					<div className="form-group custom-control custom-radio mr-4">
 						<input
@@ -290,7 +259,6 @@ export default function Direction(props) {
 							zIndex: 1
 						}}
 					/>
-
 					{route.origin !== "" && route.destination !== "" && (
 						<>
 							<DirectionsService
@@ -317,15 +285,30 @@ export default function Direction(props) {
 									);
 								}}
 							/>
-							{/* <DistanceMatrixService
+							<DirectionsService
+								// required
 								options={{
 									destination: destination,
 									origin: origin,
-									travelMode: travelMode,
-									unitSystem: window.google.maps.UnitSystem.METRIC
+									travelMode: "WALKING"
 								}}
-								callback={distanceCallback}
-							/> */}
+								// required
+								callback={directionsCallbackWalking}
+								// optional
+								onLoad={directionsService => {
+									console.log(
+										"DirectionsService onLoad directionsService: ",
+										directionsService
+									);
+								}}
+								// optional
+								onUnmount={directionsService => {
+									console.log(
+										"DirectionsService onUnmount directionsService: ",
+										directionsService
+									);
+								}}
+							/>
 						</>
 					)}
 					{response !== null && (

@@ -6,6 +6,7 @@ import {
 	DirectionsRenderer
 } from "@react-google-maps/api";
 import Direction from "./Direction";
+import Footprint from "./Footprint";
 
 function Mymap() {
 	return (
@@ -25,13 +26,32 @@ function Mymap() {
 }
 
 export default function MyComponents(props) {
+	const [distance, setDistance] = useState(null);
+	const [duration, setDuration] = useState(null);
+	const [carbonfootprint, setCarbonfootprint] = useState(null);
 	return (
 		<LoadScript
 			id="script-loader"
 			googleMapsApiKey={process.env.REACT_APP_APIKEY}
 			libraries={["places"]}
 		>
-			<Direction centerLocation={props.centerLocation} />
+			<Direction
+				centerLocation={props.centerLocation}
+				distance={distance}
+				setDistance={setDistance}
+				duration={duration}
+				setDuration={setDuration}
+				carbonfootprint={carbonfootprint}
+				setCarbonfootprint={setCarbonfootprint}
+			/>
+			<Footprint
+				distance={distance}
+				setDistance={setDistance}
+				duration={duration}
+				setDuration={setDuration}
+				carbonfootprint={carbonfootprint}
+				setCarbonfootprint={setCarbonfootprint}
+			/>
 		</LoadScript>
 	);
 }

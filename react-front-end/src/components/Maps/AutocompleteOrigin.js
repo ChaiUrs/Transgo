@@ -55,7 +55,11 @@ export default function AutocompleteOrigin(props) {
 				type="text"
 				onChange={event => {
 					props.setOrigin(event.target.value);
+
 					// event.target.value = { result };
+				}}
+				onSelect={event => {
+					props.setOrigin(event.target.value);
 				}}
 			/>
 		</Autocomplete>
