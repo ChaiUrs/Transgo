@@ -24,7 +24,6 @@ export default function Direction(props) {
 	const [distance, setDistance] = useState("");
 	const [duration, setDuration] = useState("");
 	const [carbonfootprint, setCarbonfootprint] = useState("");
-
 	const [autocomplete, setAutocomplete] = useState("");
 
 	function directionsCallback(response) {
@@ -86,7 +85,6 @@ export default function Direction(props) {
 
 	function onLoad(autocomplete) {
 		console.log("autocomplete: ", autocomplete);
-
 		setAutocomplete(autocomplete);
 	}
 
@@ -217,25 +215,20 @@ export default function Direction(props) {
 				</button>
 			</div>
 			<div className="map-container">
+				<br />
 				<GoogleMap
-					// required
 					id="direction-example"
-					// required
 					mapContainerStyle={{
+						paddingTop: "10px",
 						height: "500px",
 						width: "100%"
 					}}
-					// required
 					zoom={15}
-					// required
 					center={props.centerLocation}
-					// optional
 					onClick={onMapClick}
-					// optional
 					onLoad={map => {
 						console.log("DirectionsRenderer onLoad map: ", map);
 					}}
-					// optional
 					onUnmount={map => {
 						console.log("DirectionsRenderer onUnmount map: ", map);
 					}}
@@ -247,20 +240,16 @@ export default function Direction(props) {
 						position={props.centerLocation}
 					/>
 					<Circle
-						// optional
 						onLoad={circle => {
 							console.log("Circle onLoad circle: ", circle);
 						}}
-						// optional
 						onUnmount={circle => {
 							console.log("Circle onUnmount circle: ", circle);
 						}}
-						// required
 						center={props.centerLocation}
-						// required
 						options={{
 							strokeColor: "#FF0000",
-							strokeOpacity: 0.8,
+							strokeOpacity: 0.5,
 							strokeWeight: 2,
 							fillColor: "#FF0000",
 							fillOpacity: 0.35,
@@ -268,7 +257,7 @@ export default function Direction(props) {
 							draggable: false,
 							editable: false,
 							visible: true,
-							radius: 1000,
+							radius: 150,
 							zIndex: 1
 						}}
 					/>
@@ -276,22 +265,18 @@ export default function Direction(props) {
 					{route.origin !== "" && route.destination !== "" && (
 						<>
 							<DirectionsService
-								// required
 								options={{
 									destination: destination,
 									origin: origin,
 									travelMode: travelMode
 								}}
-								// required
 								callback={directionsCallback}
-								// optional
 								onLoad={directionsService => {
 									console.log(
 										"DirectionsService onLoad directionsService: ",
 										directionsService
 									);
 								}}
-								// optional
 								onUnmount={directionsService => {
 									console.log(
 										"DirectionsService onUnmount directionsService: ",
@@ -304,18 +289,15 @@ export default function Direction(props) {
 					)}
 					{response !== null && (
 						<DirectionsRenderer
-							// required
 							options={{
 								directions: response
 							}}
-							// optional
 							onLoad={directionsRenderer => {
 								console.log(
 									"DirectionsRenderer onLoad directionsRenderer: ",
 									directionsRenderer
 								);
 							}}
-							// optional
 							onUnmount={directionsRenderer => {
 								console.log(
 									"DirectionsRenderer onUnmount directionsRenderer: ",

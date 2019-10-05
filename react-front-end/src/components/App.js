@@ -3,7 +3,6 @@ import { ToastContainer } from "react-toastify";
 import { BrowserRouter as Router } from "react-router-dom";
 import "../styles/App.css";
 import Navbar from "./NavBar/Navbar.js";
-
 import Loadscript from "./Maps/Loadscript";
 
 const pos = {};
@@ -83,7 +82,7 @@ export default function App() {
 				<></>
 			)}
 
-			{logged ? <></> : <Loadscript centerLocation={pos} />}
+			{logged ? <Loadscript centerLocation={pos} /> : <></>}
 		</Router>
 	);
 }
