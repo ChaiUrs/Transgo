@@ -1,5 +1,6 @@
 import AutocompleteOrigin from "./AutocompleteOrigin";
 import AutocompleteDestination from "./AutocompleteDestination";
+import calculateCarbonFootprint from "../../helpers/calculateCarbonFootprint";
 
 const React = require("react");
 const { useState, useEffect } = require("react");
@@ -34,6 +35,12 @@ export default function Direction(props) {
 				console.log("response Data: ", response);
 				setDistance(response.routes[0].legs[0].distance.text);
 				setDuration(response.routes[0].legs[0].duration.text);
+				setCarbonfootprint(
+					calculateCarbonFootprint(
+						travelMode,
+						response.routes[0].legs[0].distance.value
+					)
+				);
 			} else {
 				console.log("response: ", response);
 			}
@@ -151,6 +158,7 @@ export default function Direction(props) {
 								id="FOOTPRINT"
 								className="form-control"
 								type="text"
+								value={`${carbonfootprint} kg/km`}
 								onChange={event => setCarbonfootprint(event.target.value)}
 							/>
 						</div>
