@@ -28,6 +28,7 @@ export default function Direction(props) {
 	const [autocomplete, setAutocomplete] = useState("");
 
 	function directionsCallback(response) {
+		//moving to map
 		console.log(response);
 		if (response !== null) {
 			if (response.status === "OK") {
@@ -87,6 +88,7 @@ export default function Direction(props) {
 		}
 	}
 	function onMapClick(...args) {
+		//moved to map.js
 		console.log("onClick args: ", args);
 	}
 
