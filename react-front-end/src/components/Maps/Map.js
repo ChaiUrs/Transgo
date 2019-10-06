@@ -6,8 +6,10 @@ import {
 	DirectionsRenderer,
 	DirectionsService
 } from "@react-google-maps/api";
+import calculateCarbonFootprint from "../../helpers/calculateCarbonFootprint";
 
 export default function Map(props) {
+
 	function onMapClick(...args) {
 		console.log("onClick args: ", args);
 	}
@@ -16,13 +18,13 @@ export default function Map(props) {
 		console.log(response);
 		if (response !== null) {
 			if (response.status === "OK") {
-				setResponse(response);
+				props.setResponse(response);
 				console.log("response Data: ", response);
-				setDistance(response.routes[0].legs[0].distance.text);
-				setDuration(response.routes[0].legs[0].duration.text);
-				setCarbonfootprint(
+				props.setDistance(response.routes[0].legs[0].distance.text);
+				props.setDuration(response.routes[0].legs[0].duration.text);
+				props.setCarbonfootprint(
 					calculateCarbonFootprint(
-						travelMode,
+						props.travelMode,
 						response.routes[0].legs[0].distance.value
 					)
 				);
@@ -79,13 +81,13 @@ export default function Map(props) {
 				}}
 			/>
 
-			{route.origin !== "" && route.destination !== "" && (
+			{props.route.origin !== "" && props.route.destination !== "" && (
 				<>
 					<DirectionsService
 						options={{
-							destination: destination,
-							origin: origin,
-							travelMode: travelMode
+							destination: props.destination,
+							origin: props.origin,
+							travelMode: props.travelMode
 						}}
 						callback={directionsCallback}
 						onLoad={directionsService => {
@@ -104,10 +106,10 @@ export default function Map(props) {
 					{}
 				</>
 			)}
-			{response !== null && (
+			{props.response !== null && (
 				<DirectionsRenderer
 					options={{
-						directions: response
+						directions: props.response
 					}}
 					onLoad={directionsRenderer => {
 						console.log(
