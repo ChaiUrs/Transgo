@@ -51,13 +51,13 @@ export default function Sidebar (props) {
 					</div>
 					<div className="col-md-2 col-lg-2">
 						<div className="form-group">
-							<label htmlFor="FOOTPRINT">Carbon Footprint</label>
+							<label htmlFor="FOOTPRINT">Carbon Footprint (kg/trip)</label>
 							<br />
 							<input
 								id="FOOTPRINT"
 								className="form-control"
 								type="text"
-								value={`${props.carbonfootprint} kg/km`}
+								value={props.carbonfootprint}
 								// onChange={event => setCarbonfootprint(event.target.value)}
 							/>
 						</div>

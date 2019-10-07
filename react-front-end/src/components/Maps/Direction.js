@@ -2,6 +2,7 @@ import AutocompleteOrigin from "./AutocompleteOrigin";
 import AutocompleteDestination from "./AutocompleteDestination";
 import Map from "./Map";
 import Sidebar from "./Sidebar";
+import Routing from "./Routing";
 
 const React = require("react");
 const { useState, useEffect } = require("react");
@@ -39,35 +40,6 @@ export default function Direction(props) {
 		}
 	}
 
-	function checkDriving({ target: { checked } }) {
-		if (checked) {
-			setTravelMode("DRIVING");
-		}
-	}
-	function checkBicycling({ target: { checked } }) {
-		if (checked) {
-			setTravelMode("BICYCLING");
-		}
-	}
-	function checkTransit({ target: { checked } }) {
-		if (checked) {
-			setTravelMode("TRANSIT");
-		}
-	}
-	function checkWalking({ target: { checked } }) {
-		if (checked) {
-			setTravelMode("WALKING");
-		}
-	}
-	function buildRoute() {
-		if (origin !== "" && destination !== "") {
-			setRoute({
-				origin,
-				destination
-			});
-		}
-	}
-
 	function onLoad(autocomplete) {
 		console.log("autocomplete: ", autocomplete);
 		setAutocomplete(autocomplete);
@@ -93,63 +65,14 @@ export default function Direction(props) {
 					duration={duration}
 					carbonfootprint={carbonfootprint}
 				/>
-				<div className="d-flex flex-wrap">
-					<div className="form-group custom-control custom-radio mr-4">
-						<input
-							id="DRIVING"
-							className="custom-control-input"
-							name="travelMode"
-							type="radio"
-							checked={travelMode === "DRIVING"}
-							onChange={checkDriving}
-						/>
-						<label className="custom-control-label" htmlFor="DRIVING">
-							Driving
-						</label>
-					</div>
-					<div className="form-group custom-control custom-radio mr-4">
-						<input
-							id="BICYCLING"
-							className="custom-control-input"
-							name="travelMode"
-							type="radio"
-							checked={travelMode === "BICYCLING"}
-							onChange={checkBicycling}
-						/>
-						<label className="custom-control-label" htmlFor="BICYCLING">
-							Bicycling
-						</label>
-					</div>
-					<div className="form-group custom-control custom-radio mr-4">
-						<input
-							id="TRANSIT"
-							className="custom-control-input"
-							name="travelMode"
-							type="radio"
-							checked={travelMode === "TRANSIT"}
-							onChange={checkTransit}
-						/>
-						<label className="custom-control-label" htmlFor="TRANSIT">
-							Transit
-						</label>
-					</div>
-					<div className="form-group custom-control custom-radio mr-4">
-						<input
-							id="WALKING"
-							className="custom-control-input"
-							name="travelMode"
-							type="radio"
-							checked={travelMode === "WALKING"}
-							onChange={checkWalking}
-						/>
-						<label className="custom-control-label" htmlFor="WALKING">
-							Walking
-						</label>
-					</div>
-				</div>
-				<button className="btn btn-primary" type="button" onClick={buildRoute}>
-					Build Route
-				</button>
+				<Routing 
+					travelMode={travelMode}
+					setTravelMode={setTravelMode}
+					route={route}
+					setRoute={setRoute}
+					origin={origin}
+					destination={destination}
+				/>
 			</div>
 			<div className="map-container">
 				<br />
