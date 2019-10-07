@@ -56,7 +56,7 @@ export default function Direction(props) {
 		<div className="map">
 			<div className="map-settings">
 				<hr className="ml-auto mt-0 mb-3" />
-				<Sidebar 
+				<Sidebar
 					origin={origin}
 					setOrigin={setOrigin}
 					destination={destination}
@@ -65,7 +65,7 @@ export default function Direction(props) {
 					duration={duration}
 					carbonfootprint={carbonfootprint}
 				/>
-				<Routing 
+				<Routing
 					travelMode={travelMode}
 					setTravelMode={setTravelMode}
 					route={route}
@@ -76,7 +76,7 @@ export default function Direction(props) {
 			</div>
 			<div className="map-container">
 				<br />
-				<Map 
+				<Map
 					centerLocation={props.centerLocation}
 					route={route}
 					setRoute={setRoute}
