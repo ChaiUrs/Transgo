@@ -109,14 +109,18 @@ export default function Direction(props) {
 				<div className="row">
 					<div className="col-ml-3 col-md-2 col-lg-2">
 						<div className="form-group">
-							<label htmlFor="ORIGIN">Origin</label>
+							<label htmlFor="Origin">
+								<b>ORIGIN</b>
+							</label>
 							<br />
 							<AutocompleteOrigin setOrigin={setOrigin} origin={origin} />
 						</div>
 					</div>
 					<div className="col-md-2 col-lg-2">
 						<div className="form-group">
-							<label htmlFor="DESTINATION">Destination</label>
+							<label htmlFor="Destination">
+								<b>DESTINATION</b>
+							</label>
 							<br />
 							<AutocompleteDestination
 								setDestination={setDestination}
@@ -126,25 +130,29 @@ export default function Direction(props) {
 					</div>
 					<div className="col-md-2 col-lg-2">
 						<div className="form-group">
-							<label htmlFor="DISTANCE">Distance</label>
+							<label htmlFor="Distance">
+								<b>DISTANCE</b>
+							</label>
 							<br />
 							<input
 								id="DISTANCE"
 								className="form-control"
 								type="text"
-								value={distance}
+								value={`${distance}`}
 								onChange={event => setDistance(event.target.value)}
 							/>
 						</div>
 					</div>
 					<div className="col-md-2 col-lg-2">
 						<div className="form-group">
-							<label htmlFor="DURATION">Duration</label>
+							<label htmlFor="Duration">
+								<b>DURATION</b>
+							</label>
 							<br />
 							<input
 								id="DURATION"
 								className="form-control"
-								value={duration}
+								value={`${duration}`}
 								type="text"
 								onChange={event => setDuration(event.target.value)}
 							/>
@@ -152,7 +160,9 @@ export default function Direction(props) {
 					</div>
 					<div className="col-md-2 col-lg-2">
 						<div className="form-group">
-							<label htmlFor="FOOTPRINT">Carbon Footprint</label>
+							<label htmlFor="Carbon Footprint">
+								<b>CARBON FOOTPRINT</b>
+							</label>
 							<br />
 							<input
 								id="FOOTPRINT"
