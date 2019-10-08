@@ -56,13 +56,24 @@ export default function Routing(props) {
 						<FontAwesomeIcon
 							className="busicon"
 							icon={faBusAlt}
+							paddingTop="2"
 							size="3x"
 							color="blue"
 							onClick={event => props.setTravelMode("TRANSIT")}
 						/>
 					</label>
+					<br />
+					<b
+						style={{
+							fontSize: 20,
+							color: "DarkRed",
+							fontFamily: "Acme",
+							paddingRight: "30px"
+						}}
+					>
+						TRANSIT
+					</b>
 				</div>
-
 				<div className="form-group custom-control">
 					<input
 						id="DRIVING"
@@ -81,8 +92,18 @@ export default function Routing(props) {
 							onClick={event => props.setTravelMode("DRIVING")}
 						/>
 					</label>
+					<br />
+					<b
+						style={{
+							fontSize: 20,
+							color: "Indigo",
+							fontFamily: "Acme",
+							paddingRight: "30px"
+						}}
+					>
+						DRIVING
+					</b>
 				</div>
-
 				<div className="form-group custom-control">
 					<input
 						id="BICYCLING"
@@ -101,8 +122,18 @@ export default function Routing(props) {
 							onClick={event => props.setTravelMode("BICYCLING")}
 						/>
 					</label>
+					<br />
+					<b
+						style={{
+							fontSize: 20,
+							color: "Khaki",
+							fontFamily: "Acme",
+							paddingRight: "30px"
+						}}
+					>
+						BIKING
+					</b>
 				</div>
-
 				<div className="form-group custom-control">
 					<input
 						id="WALKING"
@@ -120,22 +151,40 @@ export default function Routing(props) {
 							onClick={event => props.setTravelMode("WALKING")}
 						/>
 					</label>
+					<br />
+					<b
+						style={{
+							fontSize: 20,
+							color: "SeaGreen",
+							fontFamily: "Acme",
+							paddingRight: "200px"
+						}}
+					>
+						WALKING
+					</b>
 				</div>
-
 				<div className="form-group custom-control">
 					<label className="routingcontrols">
 						<FontAwesomeIcon
 							className="routeicon"
 							icon={faRoute}
-							size="4x"
+							size="3x"
 							color="purple"
-							type="button"
 							onClick={buildRoute}
 						/>
 					</label>
+					<br />
+					<b
+						style={{
+							fontSize: 20,
+							color: "MidnightBlue",
+							fontFamily: "Acme"
+						}}
+					>
+						BUILD ROUTE
+					</b>
 				</div>
 			</div>
-
 			<br />
 		</>
 	);

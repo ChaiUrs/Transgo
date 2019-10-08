@@ -12,12 +12,22 @@ export default function Navbar(props) {
 			<span className="navbar-logo">
 				<img
 					alt="Transgo logo"
-					src="/images/transgo2.jpg"
-					width="130"
-					height="35"
+					src="/images/transgoicon.jpg"
+					width="60"
+					height="60"
 				/>{" "}
-				<b>TRANSGO</b>
+				<b
+					style={{
+						fontSize: 60,
+						color: "rgb(3, 96, 75)",
+						fontFamily: "Acme",
+						padding: "10px"
+					}}
+				>
+					TRANSGO
+				</b>
 			</span>
+
 			<button
 				className="navbar-toggler"
 				type="button"

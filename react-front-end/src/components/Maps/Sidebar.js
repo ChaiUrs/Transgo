@@ -8,7 +8,17 @@ export default function Sidebar(props) {
 			<div className="col-md-5 col-lg-5">
 				<div className="form-group">
 					<label htmlFor="Origin">
-						<b>ORIGIN</b>
+						<b
+							style={{
+								fontSize: 30,
+								color: "brown",
+								fontFamily: "Monospace",
+								padding: "10px",
+								textAlign: "center"
+							}}
+						>
+							ORIGIN
+						</b>
 					</label>
 					<br />
 					<AutocompleteOrigin
@@ -18,10 +28,20 @@ export default function Sidebar(props) {
 				</div>
 			</div>
 			<br />
-			<div className="col-md-5 col-lg-5">
+			<div className="col-ml-5 col-md-5 col-lg-5">
 				<div className="form-group">
 					<label htmlFor="Destination">
-						<b>DESTINATION</b>
+						<b
+							style={{
+								fontSize: 30,
+								color: "green",
+								fontFamily: "Monospace",
+								padding: "10px",
+								textAlign: "center"
+							}}
+						>
+							DESTINATION
+						</b>
 					</label>
 					<br />
 					<AutocompleteDestination

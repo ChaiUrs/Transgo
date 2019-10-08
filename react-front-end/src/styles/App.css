@@ -38,10 +38,11 @@
 @import url("https://fonts.googleapis.com/css?family=Acme|Noto+Serif|Playfair+Display+SC|Merriweather|Quicksand&display=swap");
 
 .navbar-logo {
-	color: rgb(3, 114, 90) !important;
-	font-size: 55px;
-	padding: 0 10px 0 10px;
-	font-family: "Acme", serif;
+	color: rgb(3, 96, 75);
+	font-size: 50px;
+	margin: 10px;
+	padding: 0 20px 0 20px;
+	font-family: "Merriweather", serif;
 }
 
 nav a {
@@ -80,16 +81,33 @@ nav a {
 }
 
 .drivingcontrols:hover .caricon {
-	color: rgb(237, 129, 110);
+	color: rgba(157, 84, 84, 0.863);
 	cursor: pointer;
 }
 
 .bikingcontrols:hover .bikeicon {
-	color: rgb(97, 242, 121);
+	color: rgb(11, 214, 45);
 	cursor: pointer;
 }
 
 .walkingcontrols:hover .walkicon {
 	color: rgb(237, 141, 242);
 	cursor: pointer;
+}
+
+.routingcontrols:hover .routeicon {
+	color: rgb(204, 163, 245);
+	cursor: pointer;
+}
+
+.routingcontrols .text {
+	position: relative;
+	bottom: 0px;
+	left: 0px;
+	text-align: center;
+	visibility: hidden;
+}
+
+.routingcontrols:hover .text {
+	visibility: visible;
 }

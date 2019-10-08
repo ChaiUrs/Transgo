@@ -6,43 +6,71 @@ export default function Directiondata(props) {
 			<div className="col-ml-3 col-md-3 col-lg-3">
 				<div className="form-group">
 					<label htmlFor="Distance">
-						<b>DISTANCE</b>
+						<b
+							style={{
+								fontSize: 30,
+								color: "OrangeRed",
+								fontFamily: "Monospace",
+								padding: "60px"
+							}}
+						>
+							DISTANCE
+						</b>
 					</label>
 					<br />
 					<input
 						id="DISTANCE"
 						className="form-control"
 						type="text"
-						value={props.distance}
+						value={`${props.distance}`}
 					/>
 				</div>
 			</div>
+
 			<div className="col-md-3 col-lg-3">
 				<div className="form-group">
 					<label htmlFor="Duration">
-						<b>DURATION</b>
+						<b
+							style={{
+								fontSize: 30,
+								color: "Navy",
+								fontFamily: "Monospace",
+								padding: "80px"
+							}}
+						>
+							DURATION
+						</b>
 					</label>
 					<br />
 					<input
 						id="DURATION"
 						className="form-control"
-						value={props.duration}
 						type="text"
+						value={`${props.duration}`}
 					/>
 				</div>
 			</div>
-			<div className="col-md-3 col-lg-3">
+
+			<div className="col-md-3 col-lg-5">
 				<div className="form-group">
 					<label htmlFor="Carbon Footprint">
-						<b>CARBON FOOTPRINT</b>
+						<b
+							style={{
+								fontSize: 30,
+								color: "Black",
+								fontFamily: "Monospace",
+								padding: "110px"
+							}}
+						>
+							CARBON FOOTPRINT
+						</b>
 					</label>
 					<br />
 					<input
 						id="FOOTPRINT"
 						className="form-control"
-						placeholder="kg/trip"
 						type="text"
-						value={props.carbonfootprint}
+						value={`${props.carbonfootprint}`}
 					/>
 				</div>
 			</div>
