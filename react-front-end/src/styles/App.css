@@ -71,5 +71,25 @@ nav a {
 }
 
 .map {
-	padding: 0 100px 0 100px;
+	padding: 0 150px 0 150px;
+}
+
+.transitcontrols:hover .busicon {
+	color: rgb(40, 178, 228);
+	cursor: pointer;
+}
+
+.drivingcontrols:hover .caricon {
+	color: rgb(237, 129, 110);
+	cursor: pointer;
+}
+
+.bikingcontrols:hover .bikeicon {
+	color: rgb(97, 242, 121);
+	cursor: pointer;
+}
+
+.walkingcontrols:hover .walkicon {
+	color: rgb(237, 141, 242);
+	cursor: pointer;
 }

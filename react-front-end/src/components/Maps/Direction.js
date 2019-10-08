@@ -3,6 +3,7 @@ import AutocompleteDestination from "./AutocompleteDestination";
 import Map from "./Map";
 import Sidebar from "./Sidebar";
 import Routing from "./Routing";
+import Directiondata from "./DirectionData";
 
 const React = require("react");
 const { useState, useEffect } = require("react");
@@ -56,16 +57,13 @@ export default function Direction(props) {
 		<div className="map">
 			<div className="map-settings">
 				<hr className="ml-auto mt-0 mb-3" />
-				<Sidebar 
+				<Sidebar
 					origin={origin}
 					setOrigin={setOrigin}
 					destination={destination}
 					setDestination={setDestination}
-					distance={distance}
-					duration={duration}
-					carbonfootprint={carbonfootprint}
 				/>
-				<Routing 
+				<Routing
 					travelMode={travelMode}
 					setTravelMode={setTravelMode}
 					route={route}
@@ -73,10 +71,16 @@ export default function Direction(props) {
 					origin={origin}
 					destination={destination}
 				/>
+				<Directiondata
+					distance={distance}
+					duration={duration}
+					carbonfootprint={carbonfootprint}
+				/>
 			</div>
+
 			<div className="map-container">
 				<br />
-				<Map 
+				<Map
 					centerLocation={props.centerLocation}
 					route={route}
 					setRoute={setRoute}
