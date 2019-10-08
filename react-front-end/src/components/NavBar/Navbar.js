@@ -8,7 +8,7 @@ export default function Navbar(props) {
 	const [password, setPassword] = useState("");
 
 	return (
-		<nav className="navbar navbar-expand-lg">
+		<nav className="navbar navbar-expand-xl navbar-fixed-top">
 			<span className="navbar-logo">
 				<img
 					alt="Transgo logo"

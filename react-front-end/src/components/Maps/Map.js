@@ -9,7 +9,6 @@ import {
 import calculateCarbonFootprint from "../../helpers/calculateCarbonFootprint";
 
 export default function Map(props) {
-
 	function onMapClick(...args) {
 		console.log("onClick args: ", args);
 	}
@@ -38,7 +37,6 @@ export default function Map(props) {
 		<GoogleMap
 			id="direction-example"
 			mapContainerStyle={{
-				paddingTop: "10px",
 				height: "500px",
 				width: "100%"
 			}}
@@ -109,7 +107,8 @@ export default function Map(props) {
 			{props.response !== null && (
 				<DirectionsRenderer
 					options={{
-						directions: props.response
+						directions: props.response,
+						polylineOptions: { strokeColor: "red" }
 					}}
 					onLoad={directionsRenderer => {
 						console.log(

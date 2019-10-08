@@ -1,8 +1,16 @@
 import React from "react";
 
-export default function Routing (props) {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+	faBusAlt,
+	faCar,
+	faBicycle,
+	faWalking,
+	faRoute
+} from "@fortawesome/free-solid-svg-icons";
 
-  function checkDriving({ target: { checked } }) {
+export default function Routing(props) {
+	function checkDriving({ target: { checked } }) {
 		if (checked) {
 			props.setTravelMode("DRIVING");
 		}
@@ -21,8 +29,8 @@ export default function Routing (props) {
 		if (checked) {
 			props.setTravelMode("WALKING");
 		}
-  }
-  function buildRoute(origin=props.origin, destination=props.destination) {
+	}
+	function buildRoute(origin = props.origin, destination = props.destination) {
 		if (origin !== "" && destination !== "") {
 			props.setRoute({
 				origin,
@@ -30,66 +38,105 @@ export default function Routing (props) {
 			});
 		}
 	}
+	console.log(props.travelMode);
 
-  return (
-    <>
-    <div className="d-flex flex-wrap">
-      <div className="form-group custom-control custom-radio mr-4">
-        <input
-          id="DRIVING"
-          className="custom-control-input"
-          name="travelMode"
-          type="radio"
-          checked={props.travelMode === "DRIVING"}
-          onChange={checkDriving}
-        />
-        <label className="custom-control-label" htmlFor="DRIVING">
-          Driving
-        </label>
-      </div>
-      <div className="form-group custom-control custom-radio mr-4">
-        <input
-          id="BICYCLING"
-          className="custom-control-input"
-          name="travelMode"
-          type="radio"
-          checked={props.travelMode === "BICYCLING"}
-          onChange={checkBicycling}
-        />
-        <label className="custom-control-label" htmlFor="BICYCLING">
-          Bicycling
-        </label>
-      </div>
-      <div className="form-group custom-control custom-radio mr-4">
-        <input
-          id="TRANSIT"
-          className="custom-control-input"
-          name="travelMode"
-          type="radio"
-          checked={props.travelMode === "TRANSIT"}
-          onChange={checkTransit}
-        />
-        <label className="custom-control-label" htmlFor="TRANSIT">
-          Transit
-        </label>
-      </div>
-      <div className="form-group custom-control custom-radio mr-4">
-        <input
-          id="WALKING"
-          className="custom-control-input"
-          name="travelMode"
-          type="radio"
-          checked={props.travelMode === "WALKING"}
-          onChange={checkWalking}
-        />
-        <label className="custom-control-label" htmlFor="WALKING">
-          Walking
-        </label>
-      </div>
-    </div>
-    <button className="btn btn-primary" type="button" onClick={buildRoute}>
-      Build Route
-    </button>
-    </>
-  )
+	return (
+		<>
+			<div className="d-flex flex-wrap">
+				<div className="form-group custom-control">
+					<input
+						id="TRANSIT"
+						className="custom-control-input"
+						name="travelMode"
+						type="button"
+						checked={props.travelMode === "TRANSIT"}
+						onChange={checkTransit}
+					/>
+					<label className="transitcontrols">
+						<FontAwesomeIcon
+							className="busicon"
+							icon={faBusAlt}
+							size="3x"
+							color="blue"
+							onClick={event => props.setTravelMode("TRANSIT")}
+						/>
+					</label>
+				</div>
+
+				<div className="form-group custom-control">
+					<input
+						id="DRIVING"
+						className="custom-control-input"
+						name="travelMode"
+						type="button"
+						checked={props.travelMode === "DRIVING"}
+						onChange={checkDriving}
+					/>
+					<label className="drivingcontrols">
+						<FontAwesomeIcon
+							className="caricon"
+							icon={faCar}
+							size="3x"
+							color="red"
+							onClick={event => props.setTravelMode("DRIVING")}
+						/>
+					</label>
+				</div>
+
+				<div className="form-group custom-control">
+					<input
+						id="BICYCLING"
+						className="custom-control-input"
+						name="travelMode"
+						type="button"
+						checked={props.travelMode === "BICYCLING"}
+						onChange={checkBicycling}
+					/>
+					<label className="bikingcontrols">
+						<FontAwesomeIcon
+							className="bikeicon"
+							icon={faBicycle}
+							size="3x"
+							color="darkgreen"
+							onClick={event => props.setTravelMode("BICYCLING")}
+						/>
+					</label>
+				</div>
+
+				<div className="form-group custom-control">
+					<input
+						id="WALKING"
+						className="custom-control-input"
+						name="travelMode"
+						type="button"
+						checked={props.travelMode === "WALKING"}
+						onChange={checkWalking}
+					/>
+					<label className="walkingcontrols">
+						<FontAwesomeIcon
+							className="walkicon"
+							icon={faWalking}
+							size="3x"
+							onClick={event => props.setTravelMode("WALKING")}
+						/>
+					</label>
+				</div>
+
+				<div className="form-group custom-control">
+					<label className="routingcontrols">
+						<FontAwesomeIcon
+							className="routeicon"
+							icon={faRoute}
+							size="4x"
+							color="purple"
+							type="button"
+							onClick={buildRoute}
+						/>
+					</label>
+				</div>
+			</div>
+
+			<br />
+		</>
+	);
 }
