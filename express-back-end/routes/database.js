@@ -115,8 +115,8 @@ module.exports = () => {
 				.then(response => {
 					// console.log(response);
 					// res.send(response.data);
-					console.log("length taxis ", taxis.result.length);
-					console.log("results from api ", response.data.rows.length);
+					// console.log("length taxis ", taxis.result.length);
+					// console.log("results from api ", response.data.rows.length);
 					min = response.data.rows[0].elements[0].distance.value;
 					taxiNum = 0;
 					response.data.rows.map((taxiLoc, index) => {
@@ -125,7 +125,7 @@ module.exports = () => {
 							taxiNum = index;
 						}
 					});
-					console.log("taxi num ", taxiNum);
+					// console.log("taxi num ", taxiNum); //for getting closest taxi
 					const result = [taxis.result[taxiNum], response.data.rows[taxiNum]];
 					res.send(result);
 				})
