@@ -1,4 +1,5 @@
 export default function calculateCarbonFootprint(travelMode, distance) {
+	console.log(travelMode, distance);
 	switch (travelMode) {
 		case "DRIVING":
 			return distance * 0.20381 * 0.001;

@@ -1,4 +1,6 @@
 import React from "react";
+import { useEffect } from "react";
+import geocodeConv from "../../helpers/geocodeConv";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,8 +10,11 @@ import {
 	faWalking,
 	faRoute
 } from "@fortawesome/free-solid-svg-icons";
+import closestTaxi from "../../helpers/closestTaxi";
 
 export default function Routing(props) {
+	let cTaxi = {};
+
 	function checkDriving({ target: { checked } }) {
 		if (checked) {
 			props.setTravelMode("DRIVING");
@@ -30,15 +35,39 @@ export default function Routing(props) {
 			props.setTravelMode("WALKING");
 		}
 	}
-	function buildRoute(origin = props.origin, destination = props.destination) {
-		if (origin !== "" && destination !== "") {
-			props.setRoute({
-				origin,
-				destination
+	async function buildRoute(e) {
+		e.preventDefault();
+		// origin = Object.assign(
+		// 	Object.create(Object.getPrototypeOf(origin)),
+		// 	origin
+		// );
+		props.setGeoOrigin(await geocodeConv(props.origin));
+		props.setGeoDestination(await geocodeConv(props.destination));
+
+		// Google maps defaultMode or nonDefault(to render taxi)
+		if (props.defaultMode === false) {
+			await closestTaxi(props.origin).then(result => {
+				props.setOrigin(`${result[0].lat},${result[0].long}`);
+				props.setClosestTaxi({ lat: result[0].lat, lng: result[0].long });
+				props.setWaypoints([{ location: props.origin }]);
+				if (props.origin !== "" && props.destination !== "") {
+					props.setRoute({
+						origin: props.origin, //: {cTaxi[0].lat, cTaxi[0].long},
+						waypoints: props.waypoints,
+						destination: props.destination
+					});
+				}
 			});
+		} else {
+			if (props.origin !== "" && props.destination !== "") {
+				props.setRoute({
+					origin: props.origin,
+					waypoints: props.waypoints,
+					destination: props.destination
+				});
+			}
 		}
 	}
-	console.log(props.travelMode);
 
 	return (
 		<>
@@ -59,7 +88,11 @@ export default function Routing(props) {
 							paddingTop="2"
 							size="3x"
 							color="blue"
-							onClick={event => props.setTravelMode("TRANSIT")}
+							onClick={event => {
+								props.setTravelMode("TRANSIT");
+								props.setDefaultMode(true);
+								buildRoute(event);
+							}}
 						/>
 					</label>
 					<br />
@@ -88,8 +121,12 @@ export default function Routing(props) {
 							className="caricon"
 							icon={faCar}
 							size="3x"
-							color="Red"
-							onClick={event => props.setTravelMode("DRIVING")}
+							color="red"
+							onClick={event => {
+								props.setTravelMode("DRIVING");
+								props.setDefaultMode(true);
+								buildRoute(event);
+							}}
 						/>
 					</label>
 					<br />
@@ -119,7 +156,11 @@ export default function Routing(props) {
 							icon={faBicycle}
 							size="3x"
 							color="darkgreen"
-							onClick={event => props.setTravelMode("BICYCLING")}
+							onClick={event => {
+								props.setTravelMode("BICYCLING");
+								props.setDefaultMode(true);
+								buildRoute(event);
+							}}
 						/>
 					</label>
 					<br />
@@ -148,8 +189,36 @@ export default function Routing(props) {
 							className="walkicon"
 							icon={faWalking}
 							size="3x"
-							onClick={event => props.setTravelMode("WALKING")}
+							onClick={event => {
+								props.setTravelMode("WALKING");
+								props.setDefaultMode(true);
+								buildRoute(event);
+							}}
 						/>
+					</label>
+				</div>
+
+				<div className="form-group custom-control">
+					<input
+						id="TAXI"
+						className="custom-control-input"
+						name="travelMode"
+						type="button"
+						checked={props.travelMode === "DRIVING"}
+						onChange={checkDriving}
+					/>
+					<label className="drivingcontrols">
+						<FontAwesomeIcon
+							className="caricon"
+							icon={faCar}
+							size="3x"
+							color="yellow"
+							onClick={event => {
+								props.setTravelMode("DRIVING");
+								props.setDefaultMode(false);
+							}}
+						/>
+						TAXI
 					</label>
 					<br />
 					<b

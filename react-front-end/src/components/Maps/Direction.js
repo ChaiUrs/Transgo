@@ -19,16 +19,22 @@ export default function Direction(props) {
 	const [response, setResponse] = useState(null);
 	const [disResponse, setdisResponse] = useState(null);
 	const [travelMode, setTravelMode] = useState(null);
+	const [defaultMode, setDefaultMode] = useState(true); // to choose between taxi and default travel mode
 	const [origin, setOrigin] = useState("");
+	const [closestTaxi, setClosestTaxi] = useState(null);
+	const [waypoints, setWaypoints] = useState(null);
 	const [destination, setDestination] = useState("");
 	const [route, setRoute] = useState({
 		origin,
+		waypoints: [],
 		destination
 	});
 	const [distance, setDistance] = useState("");
 	const [duration, setDuration] = useState("");
 	const [carbonfootprint, setCarbonfootprint] = useState("");
 	const [autocomplete, setAutocomplete] = useState("");
+	const [geoOrigin, setGeoOrigin] = useState(null);
+	const [geoDestination, setGeoDestination] = useState(null);
 
 	function distanceCallback(disResponse) {
 		if (disResponse !== null) {
@@ -66,10 +72,21 @@ export default function Direction(props) {
 				<Routing
 					travelMode={travelMode}
 					setTravelMode={setTravelMode}
+					defaultMode={defaultMode}
+					setDefaultMode={setDefaultMode}
 					route={route}
 					setRoute={setRoute}
 					origin={origin}
+					setOrigin={setOrigin}
+					waypoints={waypoints}
+					setWaypoints={setWaypoints}
 					destination={destination}
+					closestTaxi={closestTaxi}
+					setClosestTaxi={setClosestTaxi}
+					geoOrigin={geoOrigin}
+					setGeoOrigin={setGeoOrigin}
+					geoDestination={geoDestination}
+					setGeoDestination={setGeoDestination}
 				/>
 				<Directiondata
 					distance={distance}
@@ -88,6 +105,8 @@ export default function Direction(props) {
 					origin={origin}
 					setDestination={setDestination}
 					setOrigin={setOrigin}
+					waypoints={waypoints}
+					setWaypoints={setWaypoints}
 					travelMode={travelMode}
 					response={response}
 					setResponse={setResponse}
@@ -97,6 +116,10 @@ export default function Direction(props) {
 					setDuration={setDuration}
 					carbonfootprint={carbonfootprint}
 					setCarbonfootprint={setCarbonfootprint}
+					closestTaxi={closestTaxi}
+					defaultMode={defaultMode}
+					geoDestination={geoDestination}
+					geoOrigin={geoOrigin}
 				/>
 			</div>
 		</div>

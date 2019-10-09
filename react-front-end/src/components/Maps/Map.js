@@ -7,26 +7,48 @@ import {
 	DirectionsService
 } from "@react-google-maps/api";
 import calculateCarbonFootprint from "../../helpers/calculateCarbonFootprint";
+import convSecToMin from "../../helpers/convSecToMin";
 
 export default function Map(props) {
+	// console.log(props.origin, props.waypoints, props.destination);
 	function onMapClick(...args) {
 		console.log("onClick args: ", args);
 	}
 
 	function directionsCallback(response) {
-		console.log(response);
+		// console.log(response);
 		if (response !== null) {
 			if (response.status === "OK") {
 				props.setResponse(response);
-				console.log("response Data: ", response);
-				props.setDistance(response.routes[0].legs[0].distance.text);
-				props.setDuration(response.routes[0].legs[0].duration.text);
-				props.setCarbonfootprint(
-					calculateCarbonFootprint(
-						props.travelMode,
-						response.routes[0].legs[0].distance.value
-					)
-				);
+				// console.log("response Data: ", response);
+
+				if (response.routes[0].legs.length > 1) {
+					let dist = 0;
+					let dur = 0;
+					response.routes[0].legs.map(x => {
+						dist += x.distance.value;
+						dur += x.duration.value;
+					});
+					props.setDistance(
+						Number.parseFloat(dist * 0.001)
+							.toFixed(3)
+							.toString() + " km"
+					);
+					props.setDuration(convSecToMin(dur));
+					props.setCarbonfootprint(
+						calculateCarbonFootprint(props.travelMode, dist)
+					);
+					console.log(dist);
+				} else {
+					props.setDistance(response.routes[0].legs[0].distance.text);
+					props.setDuration(response.routes[0].legs[0].duration.text);
+					props.setCarbonfootprint(
+						calculateCarbonFootprint(
+							props.travelMode,
+							response.routes[0].legs[0].distance.value
+						)
+					);
+				}
 			} else {
 				console.log("response: ", response);
 			}
@@ -50,6 +72,23 @@ export default function Map(props) {
 					console.log("DirectionsRenderer onUnmount map: ", map);
 				}}
 			>
+				<Marker
+					onLoad={marker => {
+						console.log("marker: ", marker);
+					}}
+					position={props.centerLocation}
+				/>
+				{props.closestTaxi ? (
+					<Marker
+						position={props.closestTaxi}
+						icon="https://img.icons8.com/color/48/000000/taxi.png"
+						title={"Closest Taxi"}
+						animation={"DROP"}
+					/>
+				) : (
+					<></>
+				)}
+
 				<Marker
 					onLoad={marker => {
 						console.log("marker: ", marker);
@@ -85,6 +124,7 @@ export default function Map(props) {
 							options={{
 								destination: props.destination,
 								origin: props.origin,
+								waypoints: props.waypoints,
 								travelMode: props.travelMode
 							}}
 							callback={directionsCallback}
@@ -104,11 +144,13 @@ export default function Map(props) {
 						{}
 					</>
 				)}
-				{props.response !== null && (
+				{/* {props.response !== null && (
 					<DirectionsRenderer
 						options={{
-							directions: props.response,
-							polylineOptions: { strokeColor: "red" }
+							destination: props.destination,
+							origin: props.origin,
+							waypoints: props.waypoints,
+							travelMode: props.travelMode
 						}}
 						onLoad={directionsRenderer => {
 							console.log(
@@ -123,6 +165,53 @@ export default function Map(props) {
 							);
 						}}
 					/>
+				)} */}
+				{props.response !== null && props.defaultMode === false && (
+					<>
+						<DirectionsRenderer
+							options={{
+								directions: props.response,
+								polylineOptions: { strokeColor: "#999900" },
+								suppressMarkers: true
+							}}
+							onLoad={directionsRenderer => {
+								console.log(
+									"DirectionsRenderer onLoad directionsRenderer: ",
+									directionsRenderer
+								);
+							}}
+							onUnmount={directionsRenderer => {
+								console.log(
+									"DirectionsRenderer onUnmount directionsRenderer: ",
+									directionsRenderer
+								);
+							}}
+						/>
+						<Marker position={props.geoOrigin} label={"O"} />
+						<Marker position={props.geoDestination} label={"D"} />
+					</>
+				)}
+				{props.response !== null && props.defaultMode && (
+					<>
+						<DirectionsRenderer
+							options={{
+								directions: props.response,
+								polylineOptions: { strokeColor: "red" }
+							}}
+							onLoad={directionsRenderer => {
+								console.log(
+									"DirectionsRenderer onLoad directionsRenderer: ",
+									directionsRenderer
+								);
+							}}
+							onUnmount={directionsRenderer => {
+								console.log(
+									"DirectionsRenderer onUnmount directionsRenderer: ",
+									directionsRenderer
+								);
+							}}
+						/>
+					</>
 				)}
 			</GoogleMap>
 		</div>
