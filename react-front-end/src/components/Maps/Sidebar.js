@@ -11,7 +11,7 @@ export default function Sidebar(props) {
 						<b
 							style={{
 								fontSize: 30,
-								color: "brown",
+								color: "Brown",
 								fontFamily: "Monospace",
 								padding: "10px",
 								textAlign: "center"
@@ -34,7 +34,7 @@ export default function Sidebar(props) {
 						<b
 							style={{
 								fontSize: 30,
-								color: "green",
+								color: "DarkGreen",
 								fontFamily: "Monospace",
 								padding: "10px",
 								textAlign: "center"

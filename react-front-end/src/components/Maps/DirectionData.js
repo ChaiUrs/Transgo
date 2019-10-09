@@ -9,9 +9,9 @@ export default function Directiondata(props) {
 						<b
 							style={{
 								fontSize: 30,
-								color: "OrangeRed",
+								color: "Purple",
 								fontFamily: "Monospace",
-								padding: "60px"
+								padding: "50px"
 							}}
 						>
 							DISTANCE
@@ -35,7 +35,7 @@ export default function Directiondata(props) {
 								fontSize: 30,
 								color: "Navy",
 								fontFamily: "Monospace",
-								padding: "80px"
+								padding: "50px"
 							}}
 						>
 							DURATION
@@ -51,7 +51,7 @@ export default function Directiondata(props) {
 				</div>
 			</div>
 
-			<div className="col-md-3 col-lg-5">
+			<div className="col-md-3 col-lg-4">
 				<div className="form-group">
 					<label htmlFor="Carbon Footprint">
 						<b
@@ -59,10 +59,10 @@ export default function Directiondata(props) {
 								fontSize: 30,
 								color: "Black",
 								fontFamily: "Monospace",
-								padding: "110px"
+								padding: "40px"
 							}}
 						>
-							CARBON FOOTPRINT
+							CO2 FOOTPRINT
 						</b>
 					</label>
 					<br />

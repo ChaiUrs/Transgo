@@ -155,7 +155,7 @@ export default function Routing(props) {
 					<b
 						style={{
 							fontSize: 20,
-							color: "SeaGreen",
+							color: "White",
 							fontFamily: "Acme",
 							paddingRight: "200px"
 						}}

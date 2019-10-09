@@ -24,10 +24,22 @@ code {
 		monospace;
 }
 
+body::before {
+	content: "";
+	background: rgb(6, 216, 167);
+	opacity: 0.3;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	position: absolute;
+	z-index: -2;
+}
+
 body::after {
 	content: "";
-	background: rgb(2, 162, 66);
-	opacity: 0.3;
+	background: rgb(2, 162, 125);
+	opacity: 0.4;
 	top: 0;
 	left: 0;
 	bottom: 0;
