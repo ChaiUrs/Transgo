@@ -154,7 +154,8 @@ export default function Map(props) {
 							);
 						}}
 					/>
-					<Marker position={{ lat: 49.27987, lng: -123.11719 }} label={"A"} />
+					<Marker position={props.geoOrigin} label={"A"} />
+					<Marker position={props.geoDestination} label={"B"} />
 				</>
 			)}
 			{props.response !== null && props.defaultMode && (

@@ -10,12 +10,12 @@ export default function geocodeConv(address) {
 	};
 	return axios(options)
 		.then(response => {
-			console.log(
-				"geocode address",
-				response.data.results[0].geometry.location
-			); // we need the response.data value
+			// console.log(
+			// 	"geocode address",
+			// 	response.data.results[0].geometry.location
+			// ); // we need the response.data value
 			// const taxis = [];
-			return response.data;
+			return response.data.results[0].geometry.location;
 		})
 		.catch(error => console.error(error));
 }

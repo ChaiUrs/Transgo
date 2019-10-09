@@ -41,6 +41,8 @@ export default function Routing(props) {
 		// 	Object.create(Object.getPrototypeOf(origin)),
 		// 	origin
 		// );
+		props.setGeoOrigin(await geocodeConv(props.origin));
+		props.setGeoDestination(await geocodeConv(props.destination));
 
 		// Google maps defaultMode or nonDefault(to render taxi)
 		if (props.defaultMode === false) {

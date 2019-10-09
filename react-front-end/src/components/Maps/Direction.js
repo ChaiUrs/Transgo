@@ -118,6 +118,8 @@ export default function Direction(props) {
 					setCarbonfootprint={setCarbonfootprint}
 					closestTaxi={closestTaxi}
 					defaultMode={defaultMode}
+					geoDestination={geoDestination}
+					geoOrigin={geoOrigin}
 				/>
 			</div>
 		</div>
