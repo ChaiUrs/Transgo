@@ -33,6 +33,8 @@ export default function Direction(props) {
 	const [duration, setDuration] = useState("");
 	const [carbonfootprint, setCarbonfootprint] = useState("");
 	const [autocomplete, setAutocomplete] = useState("");
+	const [geoOrigin, setGeoOrigin] = useState(null);
+	const [geoDestination, setGeoDestination] = useState(null);
 
 	function distanceCallback(disResponse) {
 		if (disResponse !== null) {
@@ -81,6 +83,10 @@ export default function Direction(props) {
 					destination={destination}
 					closestTaxi={closestTaxi}
 					setClosestTaxi={setClosestTaxi}
+					geoOrigin={geoOrigin}
+					setGeoOrigin={setGeoOrigin}
+					geoDestination={geoDestination}
+					setGeoDestination={setGeoDestination}
 				/>
 				<Directiondata
 					distance={distance}

@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
+import geocodeConv from "../../helpers/geocodeConv";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -41,22 +42,13 @@ export default function Routing(props) {
 		// 	origin
 		// );
 
+		// Google maps defaultMode or nonDefault(to render taxi)
 		if (props.defaultMode === false) {
-			console.log(props.origin);
 			await closestTaxi(props.origin).then(result => {
-				console.log(result);
 				props.setOrigin(`${result[0].lat},${result[0].long}`);
 				props.setClosestTaxi({ lat: result[0].lat, lng: result[0].long });
-				// const wpt = [];
-				// const wptObj = {};
-				// wptObj.location = origin;
-				// wptObj.stopover = true;
-				// wpt.push(wptObj);
 				props.setWaypoints([{ location: props.origin }]);
-				// console.log("Waypoints ", props.origin, props.waypoints);
 				if (props.origin !== "" && props.destination !== "") {
-					// console.log(cTaxi);
-					// console.log("origin", origin);
 					props.setRoute({
 						origin: props.origin, //: {cTaxi[0].lat, cTaxi[0].long},
 						waypoints: props.waypoints,
@@ -64,7 +56,6 @@ export default function Routing(props) {
 					});
 				}
 			});
-			// console.log("taxi route ", props.route);
 		} else {
 			if (props.origin !== "" && props.destination !== "") {
 				props.setRoute({
@@ -75,7 +66,6 @@ export default function Routing(props) {
 			}
 		}
 	}
-	// console.log(props.travelMode);
 
 	return (
 		<>
