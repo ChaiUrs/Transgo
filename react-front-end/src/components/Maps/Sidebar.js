@@ -27,7 +27,9 @@ export default function Sidebar(props) {
 					/>
 				</div>
 			</div>
+
 			<br />
+
 			<div className="col-ml-5 col-md-5 col-lg-5">
 				<div className="form-group">
 					<label htmlFor="Destination">

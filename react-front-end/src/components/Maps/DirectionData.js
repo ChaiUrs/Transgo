@@ -5,13 +5,41 @@ export default function Directiondata(props) {
 		<div className="container">
 			<div className="col-md-3 col-lg-3">
 				<div className="form-group">
+					<label htmlFor="Carbon Footprint">
+						<b
+							style={{
+								fontSize: 30,
+								color: "DarkGreen",
+								fontFamily: "Monospace",
+								padding: "40px"
+							}}
+						>
+							FOOTPRINT
+						</b>
+					</label>
+					<br />
+					<input
+						id="FOOTPRINT"
+						className="form-control"
+						type="text"
+						style={{
+							color: "black",
+							fontSize: 25
+						}}
+						value={`${props.carbonfootprint} kg/trip`}
+					/>
+				</div>
+			</div>
+
+			<div className="col-md-3 col-lg-3">
+				<div className="form-group">
 					<label htmlFor="Distance">
 						<b
 							style={{
 								fontSize: 30,
-								color: "Black",
+								color: "MediumVioletRed",
 								fontFamily: "Monospace",
-								padding: "30px"
+								padding: "40px"
 							}}
 						>
 							DISTANCE
@@ -22,6 +50,10 @@ export default function Directiondata(props) {
 						id="DISTANCE"
 						className="form-control"
 						type="text"
+						style={{
+							color: "black",
+							fontSize: 25
+						}}
 						value={`${props.distance}`}
 					/>
 				</div>
@@ -35,7 +67,7 @@ export default function Directiondata(props) {
 								fontSize: 30,
 								color: "Navy",
 								fontFamily: "Monospace",
-								padding: "30px"
+								padding: "40px"
 							}}
 						>
 							DURATION
@@ -46,6 +78,10 @@ export default function Directiondata(props) {
 						id="DURATION"
 						className="form-control"
 						type="text"
+						style={{
+							color: "black",
+							fontSize: 25
+						}}
 						value={`${props.duration}`}
 					/>
 				</div>
@@ -53,24 +89,28 @@ export default function Directiondata(props) {
 
 			<div className="col-md-3 col-lg-3">
 				<div className="form-group">
-					<label htmlFor="Carbon Footprint">
+					<label htmlFor="Cost">
 						<b
 							style={{
 								fontSize: 30,
-								color: "Purple",
+								color: "Black",
 								fontFamily: "Monospace",
-								padding: "45px"
+								padding: "75px"
 							}}
 						>
-							CARBON
+							COST
 						</b>
 					</label>
 					<br />
 					<input
-						id="FOOTPRINT"
+						id="COST"
 						className="form-control"
 						type="text"
-						value={`${props.carbonfootprint}`}
+						style={{
+							color: "black",
+							fontSize: 25
+						}}
+						value={`$ ${props.cost}`}
 					/>
 				</div>
 			</div>

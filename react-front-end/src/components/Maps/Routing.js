@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
 import geocodeConv from "../../helpers/geocodeConv";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -107,6 +106,7 @@ export default function Routing(props) {
 						TRANSIT
 					</b>
 				</div>
+
 				<div className="form-group custom-control">
 					<input
 						id="DRIVING"
@@ -141,6 +141,7 @@ export default function Routing(props) {
 						DRIVING
 					</b>
 				</div>
+
 				<div className="form-group custom-control">
 					<input
 						id="BICYCLING"
@@ -167,7 +168,7 @@ export default function Routing(props) {
 					<b
 						style={{
 							fontSize: 20,
-							color: "Khaki",
+							color: "Sienna",
 							fontFamily: "Acme",
 							paddingRight: "30px"
 						}}
@@ -175,6 +176,7 @@ export default function Routing(props) {
 						BIKING
 					</b>
 				</div>
+
 				<div className="form-group custom-control">
 					<input
 						id="WALKING"
@@ -196,6 +198,17 @@ export default function Routing(props) {
 							}}
 						/>
 					</label>
+					<br />
+					<b
+						style={{
+							fontSize: 20,
+							color: "DarkGreen",
+							fontFamily: "Acme",
+							paddingRight: "30px"
+						}}
+					>
+						WALKING
+					</b>
 				</div>
 
 				<div className="form-group custom-control">
@@ -212,13 +225,12 @@ export default function Routing(props) {
 							className="caricon"
 							icon={faCar}
 							size="3x"
-							color="yellow"
+							color="Yellow"
 							onClick={event => {
 								props.setTravelMode("DRIVING");
 								props.setDefaultMode(false);
 							}}
 						/>
-						TAXI
 					</label>
 					<br />
 					<b
@@ -226,12 +238,13 @@ export default function Routing(props) {
 							fontSize: 20,
 							color: "Blue",
 							fontFamily: "Acme",
-							paddingRight: "200px"
+							paddingRight: "100px"
 						}}
 					>
-						WALKING
+						TAXI
 					</b>
 				</div>
+
 				<div className="form-group custom-control">
 					<label className="routingcontrols">
 						<FontAwesomeIcon

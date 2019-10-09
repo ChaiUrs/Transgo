@@ -24,6 +24,10 @@ export default function AutocompleteDestination(props) {
 				id="DESTINATION"
 				className="form-control"
 				type="text"
+				style={{
+					color: "black",
+					fontSize: 20
+				}}
 				onChange={event => {
 					props.setDestination(event.target.value);
 				}}

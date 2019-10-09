@@ -144,28 +144,7 @@ export default function Map(props) {
 						{}
 					</>
 				)}
-				{/* {props.response !== null && (
-					<DirectionsRenderer
-						options={{
-							destination: props.destination,
-							origin: props.origin,
-							waypoints: props.waypoints,
-							travelMode: props.travelMode
-						}}
-						onLoad={directionsRenderer => {
-							console.log(
-								"DirectionsRenderer onLoad directionsRenderer: ",
-								directionsRenderer
-							);
-						}}
-						onUnmount={directionsRenderer => {
-							console.log(
-								"DirectionsRenderer onUnmount directionsRenderer: ",
-								directionsRenderer
-							);
-						}}
-					/>
-				)} */}
+
 				{props.response !== null && props.defaultMode === false && (
 					<>
 						<DirectionsRenderer
