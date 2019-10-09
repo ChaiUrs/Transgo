@@ -30,7 +30,11 @@ export default function Map(props) {
 						dist += x.distance.value;
 						dur += x.duration.value;
 					});
-					props.setDistance((dist * 0.001).toString() + " km");
+					props.setDistance(
+						Number.parseFloat(dist * 0.001)
+							.toFixed(3)
+							.toString() + " km"
+					);
 					props.setDuration(convSecToMin(dur));
 					props.setCarbonfootprint(
 						calculateCarbonFootprint(props.travelMode, dist)
@@ -79,6 +83,8 @@ export default function Map(props) {
 				<Marker
 					position={props.closestTaxi}
 					icon="https://img.icons8.com/color/48/000000/taxi.png"
+					title={"Closest Taxi"}
+					animation={"DROP"}
 				/>
 			) : (
 				<></>
@@ -154,8 +160,8 @@ export default function Map(props) {
 							);
 						}}
 					/>
-					<Marker position={props.geoOrigin} label={"A"} />
-					<Marker position={props.geoDestination} label={"B"} />
+					<Marker position={props.geoOrigin} label={"O"} />
+					<Marker position={props.geoDestination} label={"D"} />
 				</>
 			)}
 			{props.response !== null && props.defaultMode && (

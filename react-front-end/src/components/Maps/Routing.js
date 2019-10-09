@@ -90,6 +90,7 @@ export default function Routing(props) {
 							onClick={event => {
 								props.setTravelMode("TRANSIT");
 								props.setDefaultMode(true);
+								buildRoute(event);
 							}}
 						/>
 					</label>
@@ -113,6 +114,7 @@ export default function Routing(props) {
 							onClick={event => {
 								props.setTravelMode("DRIVING");
 								props.setDefaultMode(true);
+								buildRoute(event);
 							}}
 						/>
 					</label>
@@ -136,6 +138,7 @@ export default function Routing(props) {
 							onClick={event => {
 								props.setTravelMode("BICYCLING");
 								props.setDefaultMode(true);
+								buildRoute(event);
 							}}
 						/>
 					</label>
@@ -158,6 +161,7 @@ export default function Routing(props) {
 							onClick={event => {
 								props.setTravelMode("WALKING");
 								props.setDefaultMode(true);
+								buildRoute(event);
 							}}
 						/>
 					</label>
@@ -177,7 +181,7 @@ export default function Routing(props) {
 							className="caricon"
 							icon={faCar}
 							size="3x"
-							color="red"
+							color="yellow"
 							onClick={event => {
 								props.setTravelMode("DRIVING");
 								props.setDefaultMode(false);
