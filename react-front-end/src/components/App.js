@@ -30,7 +30,7 @@ export default function App() {
 	const [user, setUser] = useState({ id: "", name: "", password: "" });
 	const [userdata, setUserData] = useState([]);
 	const [alert, setAlert] = useState("");
-	const [logged, setLogged] = useState(true);
+	const [logged, setLogged] = useState(false);
 	const style = {
 		width: "100%",
 		height: "100%"

@@ -26,7 +26,7 @@ export default function Directiondata(props) {
 							color: "black",
 							fontSize: 25
 						}}
-						value={`${props.carbonfootprint} kg/trip`}
+						value={`${props.carbonfootprint}`}
 					/>
 				</div>
 			</div>
@@ -110,7 +110,7 @@ export default function Directiondata(props) {
 							color: "black",
 							fontSize: 25
 						}}
-						value={`$ ${props.cost}`}
+						value={`${props.cost}`}
 					/>
 				</div>
 			</div>
