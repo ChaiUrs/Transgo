@@ -3,13 +3,13 @@ import React from "react";
 export default function Directiondata(props) {
 	return (
 		<div className="container">
-			<div className="col-ml-3 col-md-3 col-lg-3">
+			<div className="col-md-3 col-lg-3">
 				<div className="form-group">
 					<label htmlFor="Distance">
 						<b
 							style={{
 								fontSize: 30,
-								color: "Purple",
+								color: "Black",
 								fontFamily: "Monospace",
 								padding: "30px"
 							}}
@@ -57,9 +57,9 @@ export default function Directiondata(props) {
 						<b
 							style={{
 								fontSize: 30,
-								color: "Black",
+								color: "Purple",
 								fontFamily: "Monospace",
-								padding: "30px"
+								padding: "45px"
 							}}
 						>
 							CARBON

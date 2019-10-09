@@ -88,7 +88,7 @@ export default function Routing(props) {
 							className="caricon"
 							icon={faCar}
 							size="3x"
-							color="red"
+							color="Red"
 							onClick={event => props.setTravelMode("DRIVING")}
 						/>
 					</label>
@@ -155,7 +155,7 @@ export default function Routing(props) {
 					<b
 						style={{
 							fontSize: 20,
-							color: "White",
+							color: "Blue",
 							fontFamily: "Acme",
 							paddingRight: "200px"
 						}}

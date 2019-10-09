@@ -115,7 +115,8 @@ nav a {
 .container {
 	flex-wrap: wrap-reverse;
 	justify-content: space-evenly;
-	left: 45%;
+	position: absolute;
+	width: 75%;
 }
 
 #container {
@@ -124,5 +125,5 @@ nav a {
 	right: 10%;
 	bottom: 50%;
 	left: 35%;
-	width: 60%;
+	width: 62%;
 }
