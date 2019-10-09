@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Directiondata(props) {
 	return (
-		<div className="row">
+		<div className="container">
 			<div className="col-ml-3 col-md-3 col-lg-3">
 				<div className="form-group">
 					<label htmlFor="Distance">
@@ -11,7 +11,7 @@ export default function Directiondata(props) {
 								fontSize: 30,
 								color: "Purple",
 								fontFamily: "Monospace",
-								padding: "50px"
+								padding: "30px"
 							}}
 						>
 							DISTANCE
@@ -35,7 +35,7 @@ export default function Directiondata(props) {
 								fontSize: 30,
 								color: "Navy",
 								fontFamily: "Monospace",
-								padding: "50px"
+								padding: "30px"
 							}}
 						>
 							DURATION
@@ -51,7 +51,7 @@ export default function Directiondata(props) {
 				</div>
 			</div>
 
-			<div className="col-md-3 col-lg-4">
+			<div className="col-md-3 col-lg-3">
 				<div className="form-group">
 					<label htmlFor="Carbon Footprint">
 						<b
@@ -59,10 +59,10 @@ export default function Directiondata(props) {
 								fontSize: 30,
 								color: "Black",
 								fontFamily: "Monospace",
-								padding: "40px"
+								padding: "30px"
 							}}
 						>
-							CO2 FOOTPRINT
+							CARBON
 						</b>
 					</label>
 					<br />

@@ -72,7 +72,7 @@ nav a {
 }
 
 .map {
-	padding: 0 150px 0 150px;
+	padding: 0px 100px 0 150px;
 }
 
 .transitcontrols:hover .busicon {
@@ -110,4 +110,19 @@ nav a {
 
 .routingcontrols:hover .text {
 	visibility: visible;
+}
+
+.container {
+	flex-wrap: wrap-reverse;
+	justify-content: space-evenly;
+	left: 45%;
+}
+
+#container {
+	position: absolute;
+	top: 45%;
+	right: 10%;
+	bottom: 50%;
+	left: 35%;
+	width: 60%;
 }

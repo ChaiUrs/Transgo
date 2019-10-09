@@ -34,96 +34,97 @@ export default function Map(props) {
 	}
 
 	return (
-		<GoogleMap
-			id="direction-example"
-			mapContainerStyle={{
-				height: "500px",
-				width: "100%"
-			}}
-			zoom={15}
-			center={props.centerLocation}
-			onClick={onMapClick}
-			onLoad={map => {
-				console.log("DirectionsRenderer onLoad map: ", map);
-			}}
-			onUnmount={map => {
-				console.log("DirectionsRenderer onUnmount map: ", map);
-			}}
-		>
-			<Marker
-				onLoad={marker => {
-					console.log("marker: ", marker);
+		<div id="container">
+			<GoogleMap
+				mapContainerStyle={{
+					height: "430px",
+					width: "100%"
 				}}
-				position={props.centerLocation}
-			/>
-			<Circle
-				onLoad={circle => {
-					console.log("Circle onLoad circle: ", circle);
-				}}
-				onUnmount={circle => {
-					console.log("Circle onUnmount circle: ", circle);
-				}}
+				zoom={15}
 				center={props.centerLocation}
-				options={{
-					strokeColor: "#FF0000",
-					strokeOpacity: 0.5,
-					strokeWeight: 2,
-					fillColor: "#FF0000",
-					fillOpacity: 0.35,
-					clickable: false,
-					draggable: false,
-					editable: false,
-					visible: true,
-					radius: 150,
-					zIndex: 1
+				onClick={onMapClick}
+				onLoad={map => {
+					console.log("DirectionsRenderer onLoad map: ", map);
 				}}
-			/>
+				onUnmount={map => {
+					console.log("DirectionsRenderer onUnmount map: ", map);
+				}}
+			>
+				<Marker
+					onLoad={marker => {
+						console.log("marker: ", marker);
+					}}
+					position={props.centerLocation}
+				/>
+				<Circle
+					onLoad={circle => {
+						console.log("Circle onLoad circle: ", circle);
+					}}
+					onUnmount={circle => {
+						console.log("Circle onUnmount circle: ", circle);
+					}}
+					center={props.centerLocation}
+					options={{
+						strokeColor: "#FF0000",
+						strokeOpacity: 0.5,
+						strokeWeight: 2,
+						fillColor: "#FF0000",
+						fillOpacity: 0.35,
+						clickable: false,
+						draggable: false,
+						editable: false,
+						visible: true,
+						radius: 150,
+						zIndex: 1
+					}}
+				/>
 
-			{props.route.origin !== "" && props.route.destination !== "" && (
-				<>
-					<DirectionsService
+				{props.route.origin !== "" && props.route.destination !== "" && (
+					<>
+						<DirectionsService
+							options={{
+								destination: props.destination,
+								origin: props.origin,
+								travelMode: props.travelMode
+							}}
+							callback={directionsCallback}
+							onLoad={directionsService => {
+								console.log(
+									"DirectionsService onLoad directionsService: ",
+									directionsService
+								);
+							}}
+							onUnmount={directionsService => {
+								console.log(
+									"DirectionsService onUnmount directionsService: ",
+									directionsService
+								);
+							}}
+						/>
+						{}
+					</>
+				)}
+				{props.response !== null && (
+					<DirectionsRenderer
 						options={{
-							destination: props.destination,
-							origin: props.origin,
-							travelMode: props.travelMode
+							directions: props.response,
+							polylineOptions: { strokeColor: "red" }
 						}}
-						callback={directionsCallback}
-						onLoad={directionsService => {
+						onLoad={directionsRenderer => {
 							console.log(
-								"DirectionsService onLoad directionsService: ",
-								directionsService
+								"DirectionsRenderer onLoad directionsRenderer: ",
+								directionsRenderer
 							);
 						}}
-						onUnmount={directionsService => {
+						onUnmount={directionsRenderer => {
 							console.log(
-								"DirectionsService onUnmount directionsService: ",
-								directionsService
+								"DirectionsRenderer onUnmount directionsRenderer: ",
+								directionsRenderer
 							);
 						}}
 					/>
-					{}
-				</>
-			)}
-			{props.response !== null && (
-				<DirectionsRenderer
-					options={{
-						directions: props.response,
-						polylineOptions: { strokeColor: "red" }
-					}}
-					onLoad={directionsRenderer => {
-						console.log(
-							"DirectionsRenderer onLoad directionsRenderer: ",
-							directionsRenderer
-						);
-					}}
-					onUnmount={directionsRenderer => {
-						console.log(
-							"DirectionsRenderer onUnmount directionsRenderer: ",
-							directionsRenderer
-						);
-					}}
-				/>
-			)}
-		</GoogleMap>
+				)}
+			</GoogleMap>
+		</div>
 	);
 }
