@@ -26,7 +26,7 @@ code {
 
 body::before {
 	content: "";
-	background: rgb(5, 228, 176);
+	background: rgb(6, 181, 149);
 	opacity: 0.3;
 	top: 0;
 	left: 0;
@@ -38,7 +38,7 @@ body::before {
 
 body::after {
 	content: "";
-	background: rgb(3, 194, 150);
+	background: rgb(4, 150, 194);
 	opacity: 0.4;
 	top: 0;
 	left: 0;

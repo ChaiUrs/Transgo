@@ -12,16 +12,17 @@ export default function Navbar(props) {
 			<span className="navbar-logo">
 				<img
 					alt="Transgo logo"
-					src="/images/transgoicon.jpg"
+					src="/images/transgoicon2.jpg"
 					width="60"
 					height="60"
+					padding="2px"
 				/>{" "}
 				<b
 					style={{
 						fontSize: 60,
-						color: "rgb(3, 96, 75)",
+						color: "rgb(3, 103, 114);",
 						fontFamily: "Acme",
-						padding: "10px"
+						padding: "3px"
 					}}
 				>
 					TRANSGO

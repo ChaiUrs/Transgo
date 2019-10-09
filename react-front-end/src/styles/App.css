@@ -38,10 +38,10 @@
 @import url("https://fonts.googleapis.com/css?family=Acme|Noto+Serif|Playfair+Display+SC|Merriweather|Quicksand&display=swap");
 
 .navbar-logo {
-	color: rgb(3, 96, 75);
+	color: rgb(6, 81, 89);
 	font-size: 50px;
 	margin: 10px;
-	padding: 0 20px 0 20px;
+	padding: 0 50px 0 50px;
 	font-family: "Merriweather", serif;
 }
 
@@ -58,10 +58,11 @@ nav a {
 .loginout {
 	height: 40px;
 	width: 160px;
-	margin: 7px;
+	margin-left: 7px;
 	border-radius: 15px;
 	padding: 7px;
 	font-family: "Noto Serif", serif;
+	margin-right: 10px;
 }
 
 .welcome {

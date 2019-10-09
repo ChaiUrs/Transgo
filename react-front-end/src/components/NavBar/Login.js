@@ -6,7 +6,7 @@ import { faUser, faLock, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 
 export default function Login(props) {
 	return (
-		<div className="form-inline my-2 my-lg-0 ml-auto">
+		<div className="form-inline my-2 my-lg-2 ml-0">
 			<FontAwesomeIcon icon={faUser} />
 			<input
 				className="loginout"
