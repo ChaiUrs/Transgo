@@ -101,13 +101,25 @@ module.exports = () => {
 			// console.log(taxis.result);
 			const destinations = req.params.address;
 			let origins = "";
-			taxis.result.map((taxi, index) => {
-				if (index === 0) {
-					origins += `${taxi.lat},${taxi.long}`;
-				} else {
-					origins += `|${taxi.lat},${taxi.long}`;
+			if (taxis.result.length >= 100) {
+				console.log("over 100 taxis");
+				for (let i = 0; i < 100; i++) {
+					if (i === 0) {
+						origins += `${taxis.result[i].lat},${taxis.result[i].long}`;
+					} else {
+						origins += `|${taxis.result[i].lat},${taxis.result[i].long}`;
+					}
 				}
-			});
+			} else {
+				console.log("less than 100 taxis");
+				taxis.result.map((taxi, index) => {
+					if (index === 0) {
+						origins += `${taxi.lat},${taxi.long}`;
+					} else {
+						origins += `|${taxi.lat},${taxi.long}`;
+					}
+				});
+			}
 			console.log(origins, destinations);
 			const optionsGM = `https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=${origins}&destinations=${destinations}&key=${key}`;
 			axios
@@ -117,6 +129,8 @@ module.exports = () => {
 					// res.send(response.data);
 					// console.log("length taxis ", taxis.result.length);
 					// console.log("results from api ", response.data.rows.length);
+					//
+					// console.log(response.data);
 					min = response.data.rows[0].elements[0].distance.value;
 					taxiNum = 0;
 					response.data.rows.map((taxiLoc, index) => {
