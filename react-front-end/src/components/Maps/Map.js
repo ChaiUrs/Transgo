@@ -8,6 +8,13 @@ import {
 } from "@react-google-maps/api";
 import calculateCarbonFootprint from "../../helpers/calculateCarbonFootprint";
 import convSecToMin from "../../helpers/convSecToMin";
+import calculateCost from "../../helpers/calculateCosts";
+
+const strokeColour = {TRANSIT: {strokeColor: "blue"}, 
+DRIVING: {strokeColor: "red"}, 
+BICYCLING: {strokeColor: "darkgreen"}, 
+WALKING: {strokeColor: "#000000"}
+};
 
 export default function Map(props) {
 	// console.log(props.origin, props.waypoints, props.destination);
@@ -30,7 +37,7 @@ export default function Map(props) {
 						dur += x.duration.value;
 					});
 					props.setDistance(
-						Number.parseFloat(dist * 0.001)
+						Number.parseFloat(response.routes[0].legs[1].distance.value * 0.001)
 							.toFixed(3)
 							.toString() + " km"
 					);
@@ -38,7 +45,8 @@ export default function Map(props) {
 					props.setCarbonfootprint(
 						calculateCarbonFootprint(props.travelMode, dist)
 					);
-					console.log(dist);
+					props.setCost(calculateCost(props.travelMode, props.defaultMode, response.routes[0].legs[1].distance.value));
+					// console.log(dist);
 				} else {
 					props.setDistance(response.routes[0].legs[0].distance.text);
 					props.setDuration(response.routes[0].legs[0].duration.text);
@@ -48,6 +56,7 @@ export default function Map(props) {
 							response.routes[0].legs[0].distance.value
 						)
 					);
+					props.setCost(calculateCost(props.travelMode, props.defaultMode, response.routes[0].legs[0].distance.value))
 				}
 			} else {
 				console.log("response: ", response);

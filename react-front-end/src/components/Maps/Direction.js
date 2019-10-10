@@ -32,6 +32,7 @@ export default function Direction(props) {
 	const [distance, setDistance] = useState("");
 	const [duration, setDuration] = useState("");
 	const [carbonfootprint, setCarbonfootprint] = useState("");
+	const [cost, setCost] = useState("");
 	const [autocomplete, setAutocomplete] = useState("");
 	const [geoOrigin, setGeoOrigin] = useState(null);
 	const [geoDestination, setGeoDestination] = useState(null);
@@ -92,6 +93,7 @@ export default function Direction(props) {
 					distance={distance}
 					duration={duration}
 					carbonfootprint={carbonfootprint}
+					cost={cost}
 				/>
 			</div>
 
@@ -120,6 +122,7 @@ export default function Direction(props) {
 					defaultMode={defaultMode}
 					geoDestination={geoDestination}
 					geoOrigin={geoOrigin}
+					setCost={setCost}
 				/>
 			</div>
 		</div>
