@@ -9,17 +9,39 @@ import {
 import calculateCarbonFootprint from "../../helpers/calculateCarbonFootprint";
 import convSecToMin from "../../helpers/convSecToMin";
 import calculateCost from "../../helpers/calculateCosts";
+import { DEFAULT_ECDH_CURVE } from "tls";
 
-const strokeColour = {TRANSIT: {strokeColor: "blue"}, 
-DRIVING: {strokeColor: "red"}, 
-BICYCLING: {strokeColor: "darkgreen"}, 
-WALKING: {strokeColor: "#000000"}
+const strokeColour = {
+	TRANSIT: { strokeColor: "blue" },
+	DRIVING: { strokeColor: "red" },
+	BICYCLING: { strokeColor: "darkgreen" },
+	WALKING: { strokeColor: "#000000" }
 };
 
 export default function Map(props) {
 	// console.log(props.origin, props.waypoints, props.destination);
 	function onMapClick(...args) {
 		console.log("onClick args: ", args);
+	}
+
+	function lineColour() {
+		console.log("got here");
+		switch (props.travelMode) {
+			case "TRANSIT":
+				return { strokeColor: "red" };
+				break;
+			case "DRIVING":
+				return { strokeColor: "red" };
+				break;
+			case "BICYCLING":
+				return { strokeColor: "darkgreen" };
+				break;
+			case "WALKING":
+				return { strokeColor: "#000000" };
+				break;
+			default:
+				return {};
+		}
 	}
 
 	function directionsCallback(response) {
@@ -45,7 +67,13 @@ export default function Map(props) {
 					props.setCarbonfootprint(
 						calculateCarbonFootprint(props.travelMode, dist)
 					);
-					props.setCost(calculateCost(props.travelMode, props.defaultMode, response.routes[0].legs[1].distance.value));
+					props.setCost(
+						calculateCost(
+							props.travelMode,
+							props.defaultMode,
+							response.routes[0].legs[1].distance.value
+						)
+					);
 					// console.log(dist);
 				} else {
 					props.setDistance(response.routes[0].legs[0].distance.text);
@@ -56,7 +84,13 @@ export default function Map(props) {
 							response.routes[0].legs[0].distance.value
 						)
 					);
-					props.setCost(calculateCost(props.travelMode, props.defaultMode, response.routes[0].legs[0].distance.value))
+					props.setCost(
+						calculateCost(
+							props.travelMode,
+							props.defaultMode,
+							response.routes[0].legs[0].distance.value
+						)
+					);
 				}
 			} else {
 				console.log("response: ", response);
@@ -184,7 +218,8 @@ export default function Map(props) {
 						<DirectionsRenderer
 							options={{
 								directions: props.response,
-								polylineOptions: { strokeColor: "red" }
+								polylineOptions: { strokeColor: "#00008b" },
+								suppressMarkers: true
 							}}
 							onLoad={directionsRenderer => {
 								console.log(
@@ -199,6 +234,8 @@ export default function Map(props) {
 								);
 							}}
 						/>
+						<Marker position={props.geoOrigin} label={"O"} />
+						<Marker position={props.geoDestination} label={"D"} />
 					</>
 				)}
 			</GoogleMap>
