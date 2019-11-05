@@ -8,8 +8,8 @@ A multimodal Transportation App, which provides three route options: fastest, ch
 
 ## Setup
 1. Clone these repositories
-2. [Client side setup](https://github.com/Sean-HL-Lin/InstanTrip/blob/master/final-client/README.md)
-3. [Server side setup](https://github.com/Sean-HL-Lin/InstanTrip/blob/master/final-server/README.md)
+2. [Client side setup](https://github.com/ChaiUrs/Transgo/blob/master/react-front-end/README.md)
+3. [Server side setup](https://github.com/ChaiUrs/Transgo/blob/master/express-back-end/README.md)
 
 ## Tech stack
 
