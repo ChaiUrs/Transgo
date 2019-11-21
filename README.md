@@ -17,7 +17,6 @@ Front-end
 * React
 * Google Map API
 * Google Direction API 
-* Ant design
 * Bootstrap
 * Axios
 
@@ -26,3 +25,6 @@ Back-end
 * Express
 * PostgresSQL
 * Cloud Vision API 
+
+## Screenshots
+
