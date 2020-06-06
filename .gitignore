@@ -16,3 +16,4 @@ react-front-end/.env
 react-front-end/npm-debug.log*
 react-front-end/yarn-debug.log*
 react-front-end/yarn-error.log*
+.vscode
