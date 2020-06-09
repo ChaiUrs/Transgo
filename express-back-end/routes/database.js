@@ -160,7 +160,7 @@ module.exports = () => {
 
 	router.get("/api/mobibikes/:address", (req, res) => {
 		let bikeStations = {};
-		let result ={};
+		let result =[];
 		request(mobibikesStations, function (error, response, body) {
 			if (error) throw new Error(error);
 			// console.log(response.body);
@@ -195,14 +195,21 @@ module.exports = () => {
 				.then(response => {
 
 					// res.send(response.data);
-
+					let erroneous = []
 					let min = response.data.rows[0].elements[0].distance.value;
 					let stnId = 0;
-					let data = [...response.data.rows];
-					data.forEach((stnLoc, index) => {
-						if (min > stnLoc.elements[0].distance.value) {
-							min = stnLoc.elements[0].distance.value;
+					// let data = [...response.data.rows];
+					response.data.rows.forEach((stnLoc, index) => {
+						if (stnLoc.elements[0].status === "OK" && min > stnLoc.elements[0].distance.value) {
+							min = stnLoc.elements[0]["distance"]["value"];
 							stnId = index;
+						}
+						else {
+							if (stnLoc.elements[0].status !== "OK") {
+
+								const temp = {"Address": response.data.origin_addresses[index],"BikeStation": bikeStations.result[index], "DistanceMatrix": response.data.rows[index]};
+								erroneous.push(temp);
+							}
 						}
 					});
 
@@ -211,6 +218,7 @@ module.exports = () => {
 					result.push(bikeStations.result[stnId]);
 					result.push(response.data.rows[stnId]);
 					res.send(result);
+					console.log("Error result", JSON.stringify(erroneous,null," "));
 				})
 				.catch(error => console.log("error", error));
 
