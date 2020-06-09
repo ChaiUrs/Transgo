@@ -5,9 +5,8 @@ const { Pool } = require("pg");
 const dbParams = require("../lib/db.js");
 const db = new Pool(dbParams);
 const axios = require("axios");
+const { closestMobiStn, gcDistanceMatrix } = require("../helper/gcDistanceMatrix");
 db.connect().catch(error => console.error("Failed to connect to DB ", error));
-// import gcDistanceMatrix from "../helper/gcDistanceMatrix";
-
 
 const key = process.env.APIKEY;
 
@@ -69,12 +68,6 @@ module.exports = () => {
 				// console.log(body);
 				res.send(body);
 			}
-			// .then(res => {
-			// 	response.send(res);
-			// })
-			// .catch(err => {
-			// 	console.log(err);
-			// })
 		);
 	});
 
@@ -92,17 +85,7 @@ module.exports = () => {
 
 	router.get("/api/taxi/:address", (req, res) => {
 		let taxis = {};
-		// const instance = axios.create({
-		// 	baseURL: "https://ridewithzoom.com/api/DriverPositions/",
-		// 	timeout: 1000,
-		// 	headers: {
-		// 		"Postman-Token": "d3f1d8dd-c007-42e5-b1f9-8c9323285dfa",
-		// 		"cache-control": "no-cache",
-		// 		"application-key": "CD8C3673-507A-4164-9EB8-0BEEB572762F",
-		// 		Authorization:
-		// 			"Bearer oLVbxmeFV4GgTyZcZOU7xdDjvYJS2n9W54-WEKz74ZKCo20SR9q4c2CGjZx7uC-sA0068yJ6Htmm0k_s4zMQT6k49akqmlw11yeFWBxO-zLxDzKz3QdMhJ_mmHfNnL7XjFWbuSL7QUgMXByO4GPx7BSTLB-N0Dsr_pyvoLjv3AcObxpAUqASpK_cIaiXpxvr7dxSNdWS0sScjY6CVZ68ekctlhC2jlDhp-ONFDpyBf3Cec7iZt_GFUiCGCcEZjeiLJakZoZqvwCq-6bZIWLhYRQKR3hCFAAmb9UNncnRXb9VbCcaCtW8qS9MXfcQW7H5Da1zTaHkl4rswOl9DIFfv9wKLoSP0Rx7pEwLdfUz4bhkU03kPzRCTn5iQyHEyQQlD6xomxynj7SyyLSQO8KoQB7bsJvReJW6nw728BGtZoTQaoLH6WGiD7v-PvIJVcvceP-1SR0NZqh_E_JkbCDgSQ"
-		// 	}
-		// });
+		
 		request(options, function(error, response, body) {
 			if (error) throw new Error(error);
 			taxis = JSON.parse(body);
@@ -160,17 +143,17 @@ module.exports = () => {
 
 	router.get("/api/mobibikes/:address", (req, res) => {
 		let bikeStations = {};
-		let result =[];
+		let result ={};
 		request(mobibikesStations, function (error, response, body) {
+			// address format example: 3353%20Douglas%20Road,%20Burnaby,%20BC,%20Canada
+
 			if (error) throw new Error(error);
-			// console.log(response.body);
-			// 3353%20Douglas%20Road,%20Burnaby,%20BC,%20Canada
 			bikeStations = JSON.parse(body);
 			const destinations = req.params.address;
 			let origins = "";
 			
 			if (bikeStations.result.length >= 99) {
-				console.log("over 99 taxis", bikeStations.result.length);
+				console.log("over 99 bikeStations", bikeStations.result.length);
 				for (let i = 0; i < 99; i++) {
 					if (i === 0) {
 						origins += `${bikeStations.result[i].coordinates}`;
@@ -180,11 +163,11 @@ module.exports = () => {
 				}
 			} else {
 				console.log("less than 99 bikeStations", bikeStations.result.length);
-				bikeStations.result.map((taxi, index) => {
-					if (index === 0) {
-						origins += `${taxi.lat},${taxi.long}`;
+				bikeStations.result.map((bikeStn, index) => {
+					if (i === 0) {
+						origins += `${bikeStations.result[i].coordinates}`;
 					} else {
-						origins += `|${taxi.lat},${taxi.long}`;
+						origins += `|${bikeStations.result[i].coordinates}`;
 					}
 				});
 			}
@@ -194,11 +177,9 @@ module.exports = () => {
 				.get(optionsGM)
 				.then(response => {
 
-					// res.send(response.data);
 					let erroneous = []
 					let min = response.data.rows[0].elements[0].distance.value;
 					let stnId = 0;
-					// let data = [...response.data.rows];
 					response.data.rows.forEach((stnLoc, index) => {
 						if (stnLoc.elements[0].status === "OK" && min > stnLoc.elements[0].distance.value) {
 							min = stnLoc.elements[0]["distance"]["value"];
@@ -213,16 +194,14 @@ module.exports = () => {
 						}
 					});
 
-					// console.log("taxi num ", stnId); //for getting closest taxi
-					// const result = [bikeStations.result[stnId], response.data.rows[stnId]];
-					result.push(bikeStations.result[stnId]);
-					result.push(response.data.rows[stnId]);
-					res.send(result);
-					console.log("Error result", JSON.stringify(erroneous,null," "));
+					result.BikeStation = bikeStations.result[stnId];
+					result.DistanceMatrix = bikeStations.result[stnId];
+					result.Errors = erroneous;
+
+					res.send(result) ;
 				})
 				.catch(error => console.log("error", error));
 
-			// res.send(origins); 
 		});
 	})
 
