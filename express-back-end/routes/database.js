@@ -28,6 +28,13 @@ const options = {
 	}
 };
 
+const mobibikesStations = {
+  'method': 'GET',
+  'url': 'https://vancouver-ca.smoove.pro/api-public/stations',
+  'headers': {
+  }
+};
+
 module.exports = () => {
 	router.post("/user", (req, res) => {
 		db.query(`SELECT * FROM users WHERE name=$1 AND password=$2`, [
@@ -146,6 +153,19 @@ module.exports = () => {
 				.catch(error => console.log("error", error));
 		});
 	});
+
+	router.get("/api/mobibikes/:address", (req, res) => {
+		let bikeStations = {};
+		request(mobibikesStations, function (error, response, body) {
+			if (error) throw new Error(error);
+			// console.log(response.body);
+			// 3353%20Douglas%20Road,%20Burnaby,%20BC,%20Canada
+			bikeStations = JSON.parse(body);
+			const destinations = req.params.address;
+
+			res.send(bikeStations);
+		});
+	})
 
 	return router;
 };
