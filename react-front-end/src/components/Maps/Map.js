@@ -132,6 +132,15 @@ export default function Map(props) {
           <></>
         )}
 
+        {/* {props.closestTaxi && props.defaultMode === false && props.travelMode === "BICYCLING" && (
+          <Marker
+            position={props.closestTaxi}
+            icon="https://bikeshare.rtcsnv.com/wp-content/uploads/2017/12/RTCDock-icon.png"
+            title={"Closest Bike Station"}
+            animation={"DROP"}
+          />
+        )} */}
+
         <Marker
           onLoad={(marker) => {
             console.log("marker: ", marker);
@@ -241,7 +250,6 @@ export default function Map(props) {
               />
               <Marker position={props.geoOrigin} label={"O"} />
               <Marker position={props.geoDestination} label={"D"} />
-							<Marker position={props.geoWaypoint} label={"B"} />
             </>
           )}
 
@@ -268,6 +276,12 @@ export default function Map(props) {
             />
             <Marker position={props.geoOrigin} label={"O"} />
             <Marker position={props.geoDestination} label={"D"} />
+						<Marker
+            position={props.closestTaxi}
+            icon="react-front-end/public/icons/bike-parking.png"
+            title={"Closest Bike Station"}
+            animation={"DROP"}
+          />
           </>
         )}
       </GoogleMap>
