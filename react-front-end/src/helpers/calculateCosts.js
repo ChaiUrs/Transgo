@@ -19,8 +19,16 @@ export default function calculateCost(travelMode, defaultMode, distance) {
 				return 0;
 		}
 	} else {
-		return `$ ${Number.parseFloat(distance * 1.88 * 0.001 + 3.25)
-			.toFixed(2)
-			.toString()} /trip`;
+		switch (travelMode) {
+			case "DRIVING":
+				return `$ ${Number.parseFloat(distance * 1.88 * 0.001 + 3.25)
+					.toFixed(2)
+					.toString()} /trip`;
+			case "BICYCLING":
+				return `---`;
+			default:
+				return 0;
+		}
+		
 	}
 }

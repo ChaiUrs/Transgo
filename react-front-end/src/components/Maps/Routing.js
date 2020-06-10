@@ -10,6 +10,7 @@ import {
 	faRoute
 } from "@fortawesome/free-solid-svg-icons";
 import closestTaxi from "../../helpers/closestTaxi";
+import closestBikeStn from "../../helpers/closestBikeStn";
 
 export default function Routing(props) {
 	let cTaxi = {};
@@ -45,18 +46,34 @@ export default function Routing(props) {
 
 		// Google maps defaultMode or nonDefault(to render taxi)
 		if (props.defaultMode === false) {
-			await closestTaxi(props.origin).then(result => {
-				props.setOrigin(`${result[0].lat},${result[0].long}`);
-				props.setClosestTaxi({ lat: result[0].lat, lng: result[0].long });
-				props.setWaypoints([{ location: props.origin }]);
-				if (props.origin !== "" && props.destination !== "") {
-					props.setRoute({
-						origin: props.origin, //: {cTaxi[0].lat, cTaxi[0].long},
-						waypoints: props.waypoints,
-						destination: props.destination
-					});
-				}
-			});
+			if (props.travelMode === "DRIVING") {
+				await closestTaxi(props.origin).then(result => {
+					props.setOrigin(`${result[0].lat},${result[0].long}`);
+					props.setClosestTaxi({ lat: result[0].lat, lng: result[0].long });
+					props.setWaypoints([{ location: props.origin }]);
+					if (props.origin !== "" && props.destination !== "") {
+						props.setRoute({
+							origin: props.origin, //: {cTaxi[0].lat, cTaxi[0].long},
+							waypoints: props.waypoints,
+							destination: props.destination
+						});
+					}
+				});
+			} else {
+				await closestBikeStn(props.origin).then(result => {
+					props.setOrigin(`${result.BikeStation.coordinates}`);
+					const closest = result.BikeStation.coordinates.split(",");
+					props.setClosestTaxi({ lat: closest[0], lng: closest[1] });
+					props.setWaypoints([{ location: props.origin }]);
+					if (props.origin !== "" && props.destination !== "") {
+						props.setRoute({
+							origin: props.origin, //: {cTaxi[0].lat, cTaxi[0].long},
+							waypoints: props.waypoints,
+							destination: props.destination
+						});
+					}
+				});
+			}
 		} else {
 			if (props.origin !== "" && props.destination !== "") {
 				props.setRoute({
@@ -222,7 +239,7 @@ export default function Routing(props) {
 					/>
 					<label className="drivingcontrols">
 						<FontAwesomeIcon
-							className="caricon"
+							className="bikeicon"
 							icon={faCar}
 							size="3x"
 							color="Yellow"
@@ -242,6 +259,40 @@ export default function Routing(props) {
 						}}
 					>
 						TAXI
+					</b>
+				</div>
+
+				<div className="form-group custom-control">
+					<input
+						id="MOBIBIKES"
+						className="custom-control-input"
+						name="travelMode"
+						type="button"
+						checked={props.travelMode === "BICYCLING"}
+						onChange={checkDriving}
+					/>
+					<label className="drivingcontrols">
+						<FontAwesomeIcon
+							className="caricon"
+							icon={faBicycle}
+							size="3x"
+							color="Yellow"
+							onClick={event => {
+								props.setTravelMode("BICYCLING");
+								props.setDefaultMode(false);
+							}}
+						/>
+					</label>
+					<br />
+					<b
+						style={{
+							fontSize: 20,
+							color: "Green",
+							fontFamily: "Acme",
+							paddingRight: "100px"
+						}}
+					>
+						MOBI BIKES
 					</b>
 				</div>
 
