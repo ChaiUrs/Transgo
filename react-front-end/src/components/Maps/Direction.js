@@ -36,6 +36,7 @@ export default function Direction(props) {
 	const [autocomplete, setAutocomplete] = useState("");
 	const [geoOrigin, setGeoOrigin] = useState(null);
 	const [geoDestination, setGeoDestination] = useState(null);
+	const [geoWaypoint, setGeoWaypoint] = useState(null);
 
 	function distanceCallback(disResponse) {
 		if (disResponse !== null) {
@@ -88,6 +89,8 @@ export default function Direction(props) {
 					setGeoOrigin={setGeoOrigin}
 					geoDestination={geoDestination}
 					setGeoDestination={setGeoDestination}
+					geoWaypoint={geoWaypoint}
+					setGeoWaypoint={setGeoWaypoint}
 				/>
 				<Directiondata
 					distance={distance}
@@ -123,6 +126,8 @@ export default function Direction(props) {
 					geoDestination={geoDestination}
 					geoOrigin={geoOrigin}
 					setCost={setCost}
+					geoWaypoint={geoWaypoint}
+					setGeoWaypoint={setGeoWaypoint}
 				/>
 			</div>
 		</div>

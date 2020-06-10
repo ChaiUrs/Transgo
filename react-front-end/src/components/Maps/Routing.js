@@ -43,6 +43,7 @@ export default function Routing(props) {
 		// );
 		props.setGeoOrigin(await geocodeConv(props.origin));
 		props.setGeoDestination(await geocodeConv(props.destination));
+		props.setGeoWaypoint(await geocodeConv(props.waypoints));
 
 		// Google maps defaultMode or nonDefault(to render taxi)
 		if (props.defaultMode === false) {
@@ -65,6 +66,7 @@ export default function Routing(props) {
 					const closest = result.BikeStation.coordinates.split(",");
 					props.setClosestTaxi({ lat: closest[0], lng: closest[1] });
 					props.setWaypoints([{ location: props.origin }]);
+
 					if (props.origin !== "" && props.destination !== "") {
 						props.setRoute({
 							origin: props.origin, //: {cTaxi[0].lat, cTaxi[0].long},
